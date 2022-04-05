@@ -1,7 +1,8 @@
 package pieces;
 
 interface Piece {
-
+	
+	public boolean getAlive();
 	public Name getName();
 	public Side getSide();
 	public int[][] getMoves();

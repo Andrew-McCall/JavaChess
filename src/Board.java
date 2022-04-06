@@ -8,10 +8,7 @@ public class Board extends JPanel {// implements KeyListener, MouseListener, Act
 
 	private static final long serialVersionUID = 2195379760914381351L;
 
-	public Board() {
-		
-		System.out.println(Main.getBoxsize());
-		
+	public Board() {		
 		
 		// TODO Auto-generated constructor stub
 	}

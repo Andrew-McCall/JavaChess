@@ -1,16 +1,17 @@
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
+import javax.swing.JFrame;
 
-import javax.swing.JPanel;
-
-public class Board extends JPanel {// implements KeyListener, MouseListener, ActionListener  {
+public class Board {// implements KeyListener, MouseListener, ActionListener  {
 
 	private static final long serialVersionUID = 2195379760914381351L;
 
 	public Board() {		
 		
-		// TODO Auto-generated constructor stub
+		JFrame frame = new JFrame("Chess by Andrew");
+		
+		frame.setSize(500, 500);
+		
+		frame.setVisible(true);
+		
 	}
 
 }

@@ -10,15 +10,18 @@ public class Menu extends JPanel implements ActionListener  {
 	
 	private static final long serialVersionUID = -3691008469289316169L;
 
+	private JFrame frame = new JFrame("Menu (Chess by Andrew)");
 
 	public Menu() {
-
-		JFrame frame = new JFrame("Menu (Chess by Andrew)");
 		
 		JButton test1 = new JButton("test 1");
 		JButton test2 = new JButton("test 2");
 		JButton test3 = new JButton("test 3");
-
+				
+		test1.addActionListener(this);
+		test2.addActionListener(this);
+		test3.addActionListener(this);
+		
 		frame.setLayout(new GridLayout(3,1, 5 , 10));
 		
 		frame.add(test1);
@@ -32,7 +35,18 @@ public class Menu extends JPanel implements ActionListener  {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
+		switch (e.getActionCommand()) {
+		
+			case "test 1":
+				new Board();
+				break;
+				
+			default:
+				
+		}
+				
+		frame.dispose();
 		
 	}
 	

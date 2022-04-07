@@ -1,7 +1,7 @@
 public class Main {
 
 	private final static int BOXSIZE = 50;
-	private static GameLogic gameLogic = new GameLogic();
+	private static GameLogic gameLogic = new GameLogic("test2");
 	
 	public static void main(String[] args) {
 		

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -11,13 +12,31 @@ public class Board extends JPanel implements MouseListener{
 
 	public Board() {		
 		
-		setPreferredSize(new Dimension(Main.getBoxsize() * 10, Main.getBoxsize() * 8));
+		setPreferredSize(new Dimension(Main.getBoxsize() * 8, Main.getBoxsize() * 9));
 		
 	}
 
 	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        g.setColor(new Color(190, 190, 190));
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+            
+                if ((row + col) % 2 == 1) {
+                	
+                	g.fillRect(
+                        col * Main.getBoxsize(), 
+                        row * Main.getBoxsize(), 
+                        Main.getBoxsize(), 
+                        Main.getBoxsize()
+                    );
+                    
+                }
+            }    
+        }
+        
     }
 	
 	

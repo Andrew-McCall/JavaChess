@@ -1,17 +1,46 @@
-import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Board {// implements KeyListener, MouseListener, ActionListener  {
+import javax.swing.JPanel;
 
-	private static final long serialVersionUID = 2195379760914381351L;
+public class Board extends JPanel implements MouseListener{
+
+	private static final long serialVersionUID = 4203437795153052318L;
 
 	public Board() {		
 		
-		JFrame frame = new JFrame("Chess by Andrew");
+		setPreferredSize(new Dimension(Main.getBoxsize() * 10, Main.getBoxsize() * 8));
 		
-		frame.setSize(500, 500);
-		
-		frame.setVisible(true);
-		
+	}
+
+	@Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
+	
+	
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 	}
 
 }

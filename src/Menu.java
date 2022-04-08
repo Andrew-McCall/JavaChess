@@ -1,16 +1,14 @@
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Menu extends JPanel implements ActionListener  {
 	
 	private static final long serialVersionUID = -3691008469289316169L;
-
-	private JFrame frame = new JFrame("Menu (Chess by Andrew)");
 
 	public Menu() {
 		
@@ -21,15 +19,14 @@ public class Menu extends JPanel implements ActionListener  {
 		test1.addActionListener(this);
 		test2.addActionListener(this);
 		test3.addActionListener(this);
+				
+		this.add(test1);
+		this.add(test2);
+		this.add(test3);
+				
 		
-		frame.setLayout(new GridLayout(3,1, 5 , 10));
-		
-		frame.add(test1);
-		frame.add(test2);
-		frame.add(test3);
-		
-		frame.pack();
-		frame.setVisible(true);
+		this.setLayout(new GridLayout(3,1,5,10));
+//		setPreferredSize(new Dimension(Main.getBoxsize() * 10, Main.getBoxsize() * 8));
 		
 	}
 	
@@ -39,15 +36,13 @@ public class Menu extends JPanel implements ActionListener  {
 		switch (e.getActionCommand()) {
 		
 			case "test 1":
-				new Board();
+				Main.setPanel(new Board());
 				break;
 				
 			default:
 				
 		}
-				
-		frame.dispose();
-		
+						
 	}
 	
 }

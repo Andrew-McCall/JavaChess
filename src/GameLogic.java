@@ -1,20 +1,21 @@
+import pieces.*;
 
 public class GameLogic {
 
-	private String testData = "default";
+	private Piece testPiece;
 	
 	public GameLogic() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public GameLogic(String str) {
 
-		testData = str;
-		
+		testPiece = new King();
+
 	}
 
-	public String getTest() {
-		return testData;
+	public Piece getTestPiece() {
+		return testPiece;
+	}
+
+	public void setTestPiece(Piece testPiece) {
+		this.testPiece = testPiece;
 	}
 	
 }

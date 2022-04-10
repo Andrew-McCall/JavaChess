@@ -1,16 +1,22 @@
 package pieces;
 
-interface Piece {
+import java.awt.image.BufferedImage;
+
+public interface Piece {
 	
-	public boolean getAlive();
-	public Name getName();
-	public Side getSide();
-	public int[][] getMoves();
+	boolean getAlive();
+	Name getName();
+	Side getSide();
+	int[][] getMoves();
 	
-	public int getX();
-	public int getY();
-	public void setX();
-	public void setY();
+	void setX(int x);
+	int getX();
+	
+	void setY(int y);
+	int getY();
+	
+	void setImage(BufferedImage image); // Image
+	BufferedImage getImage();
 	
 }
 

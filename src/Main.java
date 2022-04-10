@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 public class Main {
 
 	private final static int BOXSIZE = 80;
-	private static GameLogic gameLogic = new GameLogic("test2");
+	private static GameLogic gameLogic = new GameLogic();
 	
 	private static JFrame window;
 	

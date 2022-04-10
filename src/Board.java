@@ -10,11 +10,12 @@ import javax.swing.JPanel;
 public class Board extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 4203437795153052318L;
-
-	public Board() {		
+	
+	public Board() {	
 		
-		setPreferredSize(new Dimension(Main.getBoxsize() * 8, Main.getBoxsize() * 9));
 		super.addMouseListener(this);
+		setPreferredSize(new Dimension(Main.getBoxsize() * 8, Main.getBoxsize() * 9));
+		
 		
 	}
 
@@ -41,6 +42,8 @@ public class Board extends JPanel implements MouseListener{
             }    
         }
         
+        g2d.drawImage(Main.getGameLogic().getTestPiece().getImage(), 0, 0, Main.getBoxsize(), Main.getBoxsize(), this);
+        
     }
 	
 	
@@ -62,7 +65,6 @@ public class Board extends JPanel implements MouseListener{
 	public void mouseEntered(MouseEvent e) {
 	}
 	
-
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}

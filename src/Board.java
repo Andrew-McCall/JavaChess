@@ -7,6 +7,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import pieces.Piece;
+
 public class Board extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 4203437795153052318L;
@@ -39,10 +41,23 @@ public class Board extends JPanel implements MouseListener{
                     );
                     
                 }
+                
             }    
         }
         
-        g2d.drawImage(Main.getGameLogic().getTestPiece().getImage(), 0, 0, Main.getBoxsize(), Main.getBoxsize(), this);
+        
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+            
+            	Piece currentPiece = Main.getGameLogic().getPiece(row, col);
+                
+                if (currentPiece != null) {
+                    g2d.drawImage(currentPiece.getImage(), Main.getBoxsize()*row, Main.getBoxsize()*col, Main.getBoxsize(), Main.getBoxsize(), this);
+                }
+                
+            }    
+        }
+        
         
     }
 	

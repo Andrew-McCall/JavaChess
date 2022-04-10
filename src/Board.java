@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,13 +22,15 @@ public class Board extends JPanel implements MouseListener{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        g.setColor(new Color(190, 190, 190));
+        Graphics2D g2d = (Graphics2D) g;
+               
+        g2d.setColor(new Color(190, 190, 190));
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
             
                 if ((row + col) % 2 == 1) {
                 	
-                	g.fillRect(
+                	g2d.fillRect(
                         col * Main.getBoxsize(), 
                         row * Main.getBoxsize(), 
                         Main.getBoxsize(), 

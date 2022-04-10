@@ -22,6 +22,7 @@ public class Main {
 		window.getContentPane().removeAll();
 		window.add(panel);
 		window.pack();
+		window.setLocationRelativeTo(null); 
 		
 	}
 	

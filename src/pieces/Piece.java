@@ -69,17 +69,3 @@ public class Piece {
 	}
 
 }
-
-enum Name {
-	KING,
-	QUEEN,
-	ROOK,
-	KNIGHT,
-	BISHOP,
-	PAWN,
-}
-
-enum Side{
-	BLACK, 
-	WHITE,
-}

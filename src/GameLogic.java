@@ -5,12 +5,12 @@ import pieces.*;
 public class GameLogic {
 
 	private Piece[] boardData;
-	private ArrayList<Piece> deadData;
+	private ArrayList<Name> deadData;
 	
 	public GameLogic() {
 
 		boardData = new Piece[64];
-		deadData = new ArrayList<Piece>();
+		deadData = new ArrayList<Name>();
 		
 		
 		// Test Data
@@ -37,6 +37,10 @@ public class GameLogic {
 	public Piece getPiece(int x, int y) {
 
 		return boardData[x + (y*8)];
+		
+	}
+	
+	public void MovePiece(int x, int y, int newX, int newY) {
 		
 	}
 	

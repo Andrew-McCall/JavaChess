@@ -41,7 +41,17 @@ public class GameLogic {
 		
 	}
 	
-	public void MovePiece(int x, int y, int newX, int newY) {
+	public void movePiece(int x, int y, int newX, int newY) {
+		
+		Piece replaced = getPiece(newX, newY);
+//		Piece moved = getPiece(x, y); TODO Legal Move Check
+		
+		if (replaced != null) {
+			deadData.add(replaced.getName());
+		}
+		
+		boardData[newX + (newY*8)] = boardData[x + (y*8)];
+		boardData[x + (y*8)] = null;
 		
 	}
 	

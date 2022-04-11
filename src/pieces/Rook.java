@@ -13,6 +13,8 @@ public class Rook extends Piece{
 	private BufferedImage image;
 	
 	public Rook() {
+		super();
+
 		try {
 			
 			image = ImageIO.read(new File("./assets/Rook.png"));

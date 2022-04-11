@@ -13,6 +13,8 @@ public class Knight extends Piece{
 	private BufferedImage image;
 	
 	public Knight() {
+		super();
+		
 		try {
 			
 			image = ImageIO.read(new File("./assets/Knight.png"));

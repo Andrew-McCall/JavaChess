@@ -13,6 +13,8 @@ public class Pawn extends Piece{
 	private BufferedImage image;
 	
 	public Pawn() {
+		super();
+
 		try {
 			
 			image = ImageIO.read(new File("./assets/Pawn.png"));

@@ -13,6 +13,8 @@ public class Bishop extends Piece{
 	private BufferedImage image;
 	
 	public Bishop() {
+		super();
+
 		try {
 			
 			image = ImageIO.read(new File("./assets/Bishop.png"));

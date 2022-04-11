@@ -18,9 +18,8 @@ public class Board extends JPanel implements MouseListener{
 		super.addMouseListener(this);
 		setPreferredSize(new Dimension(Main.getBoxsize() * 8, Main.getBoxsize() * 9));
 		
-		
 	}
-
+	
 	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

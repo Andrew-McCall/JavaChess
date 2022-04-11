@@ -13,6 +13,8 @@ public class King extends Piece{
 	private BufferedImage image;
 	
 	public King() {
+		super();
+
 		try {
 			
 			image = ImageIO.read(new File("./assets/King.png"));

@@ -2,22 +2,72 @@ package pieces;
 
 import java.awt.image.BufferedImage;
 
-public interface Piece {
+public class Piece {
+
+	private boolean alive = true;
+	private int xCoord;
+	private int yCoord;
+	private BufferedImage image;
+	private Side side = Side.WHITE;
 	
-	boolean getAlive();
-	Name getName();
-	Side getSide();
-	int[][] getMoves();
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
 	
-	void setX(int x);
-	int getX();
+	public boolean getAlive() {
+		return alive;
+	}
+
 	
-	void setY(int y);
-	int getY();
-	
-	void setImage(BufferedImage image); // Image
-	BufferedImage getImage();
-	
+	public Name getName() {
+		return null;
+	}
+
+
+	public Side getSide() {
+		return side;
+	}
+
+
+	public int[][] getMoves() {
+		// TODO 
+		return null;
+	}
+
+
+	public void setX(int x) {
+		xCoord = x;
+	}
+
+
+	public int getX() {
+		return xCoord;
+	}
+
+
+	public void setY(int y) {
+		yCoord = y;
+	}
+
+
+	public int getY() {
+		return yCoord;
+	}
+
+
+	public void setImage(BufferedImage image) {
+
+		this.image = image;
+		
+	}
+
+
+	public BufferedImage getImage() {
+
+		return image;
+		
+	}
+
 }
 
 enum Name {

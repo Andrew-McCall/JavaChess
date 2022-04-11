@@ -6,14 +6,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class King extends Piece{
+public class Queen extends Piece{
 	
 	private BufferedImage image;
 	
-	public King() {
+	public Queen() {
 		try {
 			
-			image = ImageIO.read(new File("./assets/King.png"));
+			image = ImageIO.read(new File("./assets/Queen.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -23,7 +23,7 @@ public class King extends Piece{
 
 	@Override
 	public Name getName() {
-		return Name.KING;
+		return Name.QUEEN;
 	}
 
 	@Override

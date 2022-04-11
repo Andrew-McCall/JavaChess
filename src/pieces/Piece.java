@@ -36,7 +36,6 @@ public class Piece {
 	
 
 	public int[][] getMoves() {
-		// TODO 
 		return null;
 	}
 	

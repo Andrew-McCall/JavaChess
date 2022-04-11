@@ -8,12 +8,12 @@ public class GameLogic {
 
 	private Piece[] boardData;
 	private ArrayList<Name> deadData;
+	private int boardVersion = 0;
 	
 	public GameLogic() {
 
 		boardData = new Piece[64];
 		deadData = new ArrayList<Name>();
-		
 		
 		/// Standard Board
 		
@@ -79,8 +79,12 @@ public class GameLogic {
 		boardData[newX + (newY*8)] = boardData[x + (y*8)];
 		boardData[x + (y*8)] = null;
 		
+		boardVersion += 1;
+		
 	}
-	
-	
+
+	public int getBoardVersion() {
+		return boardVersion;
+	}
 	
 }

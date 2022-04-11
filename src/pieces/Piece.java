@@ -26,15 +26,22 @@ public class Piece {
 		return null;
 	}
 
-
+	public void setSide(Side side) {
+		this.side = side;
+	}
+	
 	public Side getSide() {
 		return side;
 	}
-
+	
 
 	public int[][] getMoves() {
 		// TODO 
 		return null;
+	}
+	
+	public boolean MoveLegal(int x, int y) {
+		return false;
 	}
 
 

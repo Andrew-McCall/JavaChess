@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import enums.Name;
+import enums.Side;
 import pieces.*;
 
 public class GameLogic {
@@ -26,8 +27,8 @@ public class GameLogic {
 		boardData[6] = new Bishop();
 		boardData[7] = new Rook();
 		
-		boardData[8] = new Pawn();
-		boardData[9] = new Pawn();
+		boardData[8]  = new Pawn();
+		boardData[9]  = new Pawn();
 		boardData[10] = new Pawn();
 		boardData[11] = new Pawn();
 		boardData[12] = new Pawn();
@@ -35,6 +36,9 @@ public class GameLogic {
 		boardData[14] = new Pawn();
 		boardData[15] = new Pawn();
 		
+		for (int x = 0; x < 16; x++) {
+			boardData[x].setSide(Side.BLACK);
+		}
 		
 		// White
 		boardData[63] = new Rook();

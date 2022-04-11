@@ -14,12 +14,14 @@ public class GameLogic {
 		deadData = new ArrayList<Name>();
 		
 		
-		// Test Data
+		/// Standard Board
+		
+		// Black 
 		boardData[0] = new Rook();
 		boardData[1] = new Knight();
 		boardData[2] = new Bishop();
-		boardData[3] = new Queen();
-		boardData[4] = new King();
+		boardData[3] = new King();
+		boardData[4] = new Queen();
 		boardData[5] = new Knight();
 		boardData[6] = new Bishop();
 		boardData[7] = new Rook();
@@ -32,6 +34,26 @@ public class GameLogic {
 		boardData[13] = new Pawn();
 		boardData[14] = new Pawn();
 		boardData[15] = new Pawn();
+		
+		
+		// White
+		boardData[63] = new Rook();
+		boardData[62] = new Knight();
+		boardData[61] = new Bishop();
+		boardData[60] = new Queen();
+		boardData[59] = new King();
+		boardData[58] = new Knight();
+		boardData[57] = new Bishop();
+		boardData[56] = new Rook();
+		
+		boardData[55] = new Pawn();
+		boardData[54] = new Pawn();
+		boardData[53] = new Pawn();
+		boardData[52] = new Pawn();
+		boardData[51] = new Pawn();
+		boardData[50] = new Pawn();
+		boardData[49] = new Pawn();
+		boardData[48] = new Pawn();
 		
 	}
 

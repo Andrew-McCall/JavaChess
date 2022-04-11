@@ -13,6 +13,9 @@ public class Board extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 4203437795153052318L;
 	
+	private Cursor cursor = new Cursor();;
+	
+	
 	public Board() {	
 		
 		super.addMouseListener(this);
@@ -22,6 +25,7 @@ public class Board extends JPanel implements MouseListener{
 	
 	@Override
     public void paintComponent(Graphics g) {
+		// Boiler Then BG
         super.paintComponent(g);
         
         Graphics2D g2d = (Graphics2D) g;
@@ -44,7 +48,18 @@ public class Board extends JPanel implements MouseListener{
             }    
         }
         
+        g2d.setColor(new Color(255, 255, 190));
+        if (cursor.getPiece() != null) {
+        	g2d.fillRect(
+                cursor.getX() * Main.getBoxsize(), 
+                cursor.getY() * Main.getBoxsize(), 
+                Main.getBoxsize(), 
+                Main.getBoxsize()
+                );
+	    }
         
+ 
+        // Piece Render (Has to be seperate for layers and async)
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
             
@@ -57,7 +72,7 @@ public class Board extends JPanel implements MouseListener{
             }    
         }
         
-        
+       
     }
 	
 	
@@ -69,6 +84,19 @@ public class Board extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		
+		int x = e.getX()/Main.getBoxsize();
+		int y = e.getY()/Main.getBoxsize();
+		
+		if (y > 7 || x > 7) {
+			return;
+		}
+		
+		cursor.setCoords(x ,y);
+		cursor.setPiece(Main.getGameLogic().getPiece(x, y));
+
+		repaint();
+		
 	}
 
 	@Override

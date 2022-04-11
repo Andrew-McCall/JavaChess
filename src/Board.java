@@ -113,7 +113,6 @@ public class Board extends JPanel implements MouseListener{
 		
 		if (cursor.getPickup()) {
 			cursor.setPickup(false);
-			cursor.setPiece(null);
 		}
 		
 	}

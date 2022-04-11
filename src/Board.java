@@ -20,8 +20,9 @@ public class Board extends JPanel implements MouseListener{
 		
 		super.addMouseListener(this);
 		setPreferredSize(new Dimension(Main.getBoxsize() * 8, Main.getBoxsize() * 9));
-		
+	
 	}
+	
 	
 	@Override
     public void paintComponent(Graphics g) {
@@ -48,14 +49,21 @@ public class Board extends JPanel implements MouseListener{
             }    
         }
         
-        g2d.setColor(new Color(255, 255, 190));
-        if (cursor.getPiece() != null) {
+        
+        // Cursor
+        g2d.setColor(new Color(220, 220, 255));
+        if (cursor.getPickup()) {
         	g2d.fillRect(
                 cursor.getX() * Main.getBoxsize(), 
                 cursor.getY() * Main.getBoxsize(), 
                 Main.getBoxsize(), 
                 Main.getBoxsize()
                 );
+        	
+        	if (this.getMousePosition() != null) {
+                g2d.drawImage(cursor.getPiece().getImage(), (int) this.getMousePosition().getX()-Main.getBoxsize()/2, (int) this.getMousePosition().getY()-Main.getBoxsize()/2, Main.getBoxsize(), Main.getBoxsize(), this);
+        	}
+
 	    }
         
  
@@ -92,15 +100,22 @@ public class Board extends JPanel implements MouseListener{
 			return;
 		}
 		
-		cursor.setCoords(x ,y);
-		cursor.setPiece(Main.getGameLogic().getPiece(x, y));
-
-		repaint();
+		Piece piece = Main.getGameLogic().getPiece( x, y );
+		if (piece != null) {
+			cursor.setCoords( x, y );			
+			cursor.setPickup(true);
+		}
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		
+		if (cursor.getPickup()) {
+			cursor.setPickup(false);
+			cursor.setPiece(null);
+		}
+		
 	}
 
 	@Override

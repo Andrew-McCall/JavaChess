@@ -67,6 +67,12 @@ public class GameLogic {
 		
 	}
 	
+	public void setPiece(int x, int y, Piece piece) {
+
+		boardData[x + (y*8)] = piece;
+		
+	}
+	
 	public void movePiece(int x, int y, int newX, int newY) {
 		
 		Piece replaced = getPiece(newX, newY);

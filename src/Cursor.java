@@ -35,6 +35,12 @@ public class Cursor {
 	}
 
 	public void setPickup(boolean pickup) {
+		if (pickup) {
+			setPiece(Main.getGameLogic().getPiece(x, y));
+			Main.getGameLogic().setPiece(x, y, null);
+		}else {
+			Main.getGameLogic().setPiece(x, y, getPiece());
+		}
 		this.pickup = pickup;
 	}
 

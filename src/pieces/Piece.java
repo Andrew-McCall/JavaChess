@@ -2,6 +2,9 @@ package pieces;
 
 import java.awt.image.BufferedImage;
 
+import enums.Name;
+import enums.Side;
+
 public class Piece {
 
 	private boolean alive = true;

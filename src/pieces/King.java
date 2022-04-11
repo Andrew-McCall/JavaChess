@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import enums.Name;
+
 public class King extends Piece{
 	
 	private BufferedImage image;

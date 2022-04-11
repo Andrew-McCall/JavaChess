@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import enums.Name;
 import pieces.*;
 
 public class GameLogic {

@@ -18,27 +18,23 @@ public class GameLogic {
 		/// Standard Board
 		
 		// Black 
-		boardData[0] = new Rook();
-		boardData[1] = new Knight();
-		boardData[2] = new Bishop();
-		boardData[3] = new King();
-		boardData[4] = new Queen();
-		boardData[5] = new Knight();
-		boardData[6] = new Bishop();
-		boardData[7] = new Rook();
+		boardData[0] = new Rook(Side.BLACK);
+		boardData[1] = new Knight(Side.BLACK);
+		boardData[2] = new Bishop(Side.BLACK);
+		boardData[3] = new King(Side.BLACK);
+		boardData[4] = new Queen(Side.BLACK);
+		boardData[5] = new Knight(Side.BLACK);
+		boardData[6] = new Bishop(Side.BLACK);
+		boardData[7] = new Rook(Side.BLACK);
 		
-		boardData[8]  = new Pawn();
-		boardData[9]  = new Pawn();
-		boardData[10] = new Pawn();
-		boardData[11] = new Pawn();
-		boardData[12] = new Pawn();
-		boardData[13] = new Pawn();
-		boardData[14] = new Pawn();
-		boardData[15] = new Pawn();
-		
-		for (int x = 0; x < 16; x++) {
-			boardData[x].setSide(Side.BLACK);
-		}
+		boardData[8]  = new Pawn(Side.BLACK);
+		boardData[9]  = new Pawn(Side.BLACK);
+		boardData[10] = new Pawn(Side.BLACK);
+		boardData[11] = new Pawn(Side.BLACK);
+		boardData[12] = new Pawn(Side.BLACK);
+		boardData[13] = new Pawn(Side.BLACK);
+		boardData[14] = new Pawn(Side.BLACK);
+		boardData[15] = new Pawn(Side.BLACK);
 		
 		// White
 		boardData[63] = new Rook();

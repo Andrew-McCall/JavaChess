@@ -1,26 +1,49 @@
 package pieces;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 import enums.Name;
+import enums.Side;
 
 public class Knight extends Piece{
 	
-	private BufferedImage image;
-	
 	public Knight() {
 		super();
-		
+
 		try {
 			
-			image = ImageIO.read(new File("./assets/Knight.png"));
+			setImage(ImageIO.read(new File("./assets/Knight.png")));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		
+	}
+	
+	public Knight(Side side) {
+		super();
+
+		if (side == Side.BLACK) {
+			
+			try {
+				setImage(ImageIO.read(new File("./assets/KnightBlack.png")));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			setSide(Side.BLACK);
+			
+		}else {
+			
+			try {
+				setImage(ImageIO.read(new File("./assets/Knight.png")));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			setSide(Side.WHITE);
+			
 		}
 		
 	}
@@ -29,19 +52,4 @@ public class Knight extends Piece{
 	public Name getName() {
 		return Name.KNIGHT;
 	}
-
-	@Override
-	public void setImage(BufferedImage image) {
-
-		this.image = image;
-		
-	}
-
-	@Override
-	public BufferedImage getImage() {
-
-		return image;
-		
-	}
-
 }

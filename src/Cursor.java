@@ -19,20 +19,20 @@ public class Cursor {
 						
 			if (xCoords < 8 && yCoords < 8  &&  xCoords>=0 & yCoords>=0) {
 				
-				if (pickup) {
+				if (pickup) { // Picked up
 					
 					setPiece(Main.getGameLogic().getPiece(xCoords, yCoords));
+					setCoords(xCoords, yCoords);
 					
 					if (getPiece() == null) {
 						return;
 					}
 					
 					Main.getGameLogic().setPiece(xCoords, yCoords, null);
-					setCoords(xCoords, yCoords);
 					
-				}else {
+				}else { // New place
 					
-					Main.getGameLogic().setPiece(this.x, this.y, getPiece());
+					Main.getGameLogic().setPiece(this.x, this.y, this.selected);
 					Main.getGameLogic().movePiece(this.x, this.y, xCoords, yCoords);
 					
 				}
@@ -41,8 +41,8 @@ public class Cursor {
 				
 			}else {
 				
-				if (!pickup) {
-					Main.getGameLogic().setPiece(this.x, this.y, getPiece());
+				if (!pickup) { // Invaild Coords AND piece droped, just resets it
+					Main.getGameLogic().setPiece(this.x, this.y, this.selected);
 					this.pickup = pickup;
 				}
 				

@@ -112,7 +112,23 @@ public class Board extends JPanel implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		
 		if (cursor.getPickup()) {
+			
+			int x = e.getX()/Main.getBoxsize();
+			int y = e.getY()/Main.getBoxsize();
+			
+			if (y > 7 || x > 7) {
+				//cursor.setPickup(false);
+			}else {
+				Piece piece = Main.getGameLogic().getPiece( x, y );
+				if (piece == null || piece.getSide() != cursor.getPiece().getSide()) {
+					Main.getGameLogic().setPiece(x, y, cursor.getPiece());
+					cursor.setPiece(null);
+				}
+			}
+			
 			cursor.setPickup(false);
+
+			
 		}
 		
 	}

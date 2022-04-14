@@ -14,8 +14,8 @@ public class Cursor {
 	public void setPickup(boolean pickup, int x, int y) { 
 		
 		if (pickup != this.pickup) {
-			int xCoords = x/Main.getBoxsize();
-			int yCoords = y/Main.getBoxsize();
+			int xCoords = x/Main.BOXSIZE;
+			int yCoords = y/Main.BOXSIZE;
 						
 			if (xCoords < 8 && yCoords < 8  &&  xCoords>=0 & yCoords>=0) {
 				

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
@@ -13,14 +15,31 @@ public class Board extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 4203437795153052318L;
 	
-	private Cursor cursor = new Cursor();;
+	private Cursor cursor = new Cursor();
 	
+	private Timer paintCall = new Timer();
 	
-	public Board() {	
+	public Cursor getChessCursor() {
+		return cursor;
+	}
+
+
+	public void getChessCursor(Cursor cursor) {
+		this.cursor = cursor;
+	}
+
+
+	public Board() {
 		
 		super.addMouseListener(this);
-		setPreferredSize(new Dimension(Main.getBoxsize() * 8, Main.getBoxsize() * 9));
-	
+		setPreferredSize(new Dimension(Main.BOXSIZE * 8, Main.BOXSIZE * 9));
+		
+		paintCall.schedule(new TimerTask(){
+			@Override
+	        public void run() {
+	            Board.super.repaint();
+	        }
+		}, 100, 1000/Main.FPS);
 	}
 	
 	
@@ -38,10 +57,10 @@ public class Board extends JPanel implements MouseListener{
                 if ((row + col) % 2 == 1) {
                 	
                 	g2d.fillRect(
-                        col * Main.getBoxsize(), 
-                        row * Main.getBoxsize(), 
-                        Main.getBoxsize(), 
-                        Main.getBoxsize()
+                        col * Main.BOXSIZE, 
+                        row * Main.BOXSIZE, 
+                        Main.BOXSIZE, 
+                        Main.BOXSIZE
                     );
                     
                 }
@@ -54,14 +73,14 @@ public class Board extends JPanel implements MouseListener{
         g2d.setColor(new Color(220, 220, 255));
         if (cursor.getPickup()) {
         	g2d.fillRect(
-                cursor.getX() * Main.getBoxsize(), 
-                cursor.getY() * Main.getBoxsize(), 
-                Main.getBoxsize(), 
-                Main.getBoxsize()
+                cursor.getX() * Main.BOXSIZE, 
+                cursor.getY() * Main.BOXSIZE, 
+                Main.BOXSIZE, 
+                Main.BOXSIZE
                 );
         	
         	if (this.getMousePosition() != null) {
-                g2d.drawImage(cursor.getPiece().getImage(), (int) this.getMousePosition().getX()-Main.getBoxsize()/2, (int) this.getMousePosition().getY()-Main.getBoxsize()/2, Main.getBoxsize(), Main.getBoxsize(), this);
+                g2d.drawImage(cursor.getPiece().getImage(), (int) this.getMousePosition().getX()-Main.BOXSIZE/2, (int) this.getMousePosition().getY()-Main.BOXSIZE/2, Main.BOXSIZE, Main.BOXSIZE, this);
         	}
 
 	    }
@@ -74,7 +93,7 @@ public class Board extends JPanel implements MouseListener{
             	Piece currentPiece = Main.getGameLogic().getPiece(row, col);
                 
                 if (currentPiece != null) {
-                    g2d.drawImage(currentPiece.getImage(), Main.getBoxsize()*row, Main.getBoxsize()*col, Main.getBoxsize(), Main.getBoxsize(), this);
+                    g2d.drawImage(currentPiece.getImage(), Main.BOXSIZE*row, Main.BOXSIZE*col, Main.BOXSIZE, Main.BOXSIZE, this);
                 }
                 
             }    
@@ -94,19 +113,6 @@ public class Board extends JPanel implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		
 		cursor.setPickup(true, e.getX(), e.getY());
-
-//		int x = e.getX()/Main.getBoxsize();
-//		int y = e.getY()/Main.getBoxsize();
-//		
-//		if (y > 7 || x > 7) {
-//			return;
-//		}
-//		
-//		Piece piece = Main.getGameLogic().getPiece( x, y );
-//		if (piece != null) {
-//			cursor.setCoords( x, y );			
-//			cursor.setPickup(true);
-//		}
 		
 	}
 
@@ -114,26 +120,6 @@ public class Board extends JPanel implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		
 		cursor.setPickup(false, e.getX(), e.getY());
-		
-//		if (cursor.getPickup()) {
-//			
-//			int x = e.getX()/Main.getBoxsize();
-//			int y = e.getY()/Main.getBoxsize();
-//			
-//			if (y > 7 || x > 7) {
-//				//cursor.setPickup(false);
-//			}else {
-//				Piece piece = Main.getGameLogic().getPiece( x, y );
-//				if (piece == null || piece.getSide() != cursor.getPiece().getSide()) {
-//					Main.getGameLogic().setPiece(x, y, cursor.getPiece());
-//					cursor.setPiece(null);
-//				}
-//			}
-//			
-//			cursor.setPickup(false);
-//
-//			
-//		}
 		
 	}
 

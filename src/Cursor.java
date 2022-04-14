@@ -9,6 +9,52 @@ public class Cursor {
 	
 	private Piece selected;
 
+	
+
+	public void setPickup(boolean pickup, int x, int y) { 
+		
+		if (pickup != this.pickup) {
+			int xCoords = x/Main.getBoxsize();
+			int yCoords = y/Main.getBoxsize();
+						
+			if (xCoords < 8 && yCoords < 8  &&  xCoords>=0 & yCoords>=0) {
+				
+				if (pickup) {
+					
+					setPiece(Main.getGameLogic().getPiece(xCoords, yCoords));
+					
+					if (getPiece() == null) {
+						return;
+					}
+					
+					Main.getGameLogic().setPiece(xCoords, yCoords, null);
+					setCoords(xCoords, yCoords);
+					
+				}else {
+					
+					Main.getGameLogic().setPiece(this.x, this.y, getPiece());
+					Main.getGameLogic().movePiece(this.x, this.y, xCoords, yCoords);
+					
+				}
+				
+				this.pickup = pickup;
+				
+			}else {
+				
+				if (!pickup) {
+					Main.getGameLogic().setPiece(this.x, this.y, getPiece());
+					this.pickup = pickup;
+				}
+				
+
+			}
+			
+		}
+		
+	}
+
+	
+	// Setters & Getters
 	public Piece getPiece() {
 		return selected;
 	}
@@ -33,15 +79,4 @@ public class Cursor {
 	public boolean getPickup() {
 		return pickup;
 	}
-
-	public void setPickup(boolean pickup) {
-		if (pickup) {
-			setPiece(Main.getGameLogic().getPiece(x, y));
-			Main.getGameLogic().setPiece(x, y, null);
-		}else {
-			Main.getGameLogic().setPiece(x, y, getPiece());
-		}
-		this.pickup = pickup;
-	}
-
 }

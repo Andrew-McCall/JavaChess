@@ -93,43 +93,47 @@ public class Board extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		int x = e.getX()/Main.getBoxsize();
-		int y = e.getY()/Main.getBoxsize();
-		
-		if (y > 7 || x > 7) {
-			return;
-		}
-		
-		Piece piece = Main.getGameLogic().getPiece( x, y );
-		if (piece != null) {
-			cursor.setCoords( x, y );			
-			cursor.setPickup(true);
-		}
+		cursor.setPickup(true, e.getX(), e.getY());
+
+//		int x = e.getX()/Main.getBoxsize();
+//		int y = e.getY()/Main.getBoxsize();
+//		
+//		if (y > 7 || x > 7) {
+//			return;
+//		}
+//		
+//		Piece piece = Main.getGameLogic().getPiece( x, y );
+//		if (piece != null) {
+//			cursor.setCoords( x, y );			
+//			cursor.setPickup(true);
+//		}
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		
-		if (cursor.getPickup()) {
-			
-			int x = e.getX()/Main.getBoxsize();
-			int y = e.getY()/Main.getBoxsize();
-			
-			if (y > 7 || x > 7) {
-				//cursor.setPickup(false);
-			}else {
-				Piece piece = Main.getGameLogic().getPiece( x, y );
-				if (piece == null || piece.getSide() != cursor.getPiece().getSide()) {
-					Main.getGameLogic().setPiece(x, y, cursor.getPiece());
-					cursor.setPiece(null);
-				}
-			}
-			
-			cursor.setPickup(false);
-
-			
-		}
+		cursor.setPickup(false, e.getX(), e.getY());
+		
+//		if (cursor.getPickup()) {
+//			
+//			int x = e.getX()/Main.getBoxsize();
+//			int y = e.getY()/Main.getBoxsize();
+//			
+//			if (y > 7 || x > 7) {
+//				//cursor.setPickup(false);
+//			}else {
+//				Piece piece = Main.getGameLogic().getPiece( x, y );
+//				if (piece == null || piece.getSide() != cursor.getPiece().getSide()) {
+//					Main.getGameLogic().setPiece(x, y, cursor.getPiece());
+//					cursor.setPiece(null);
+//				}
+//			}
+//			
+//			cursor.setPickup(false);
+//
+//			
+//		}
 		
 	}
 

@@ -71,17 +71,22 @@ public class GameLogic {
 	
 	public void movePiece(int x, int y, int newX, int newY) {
 		
-		Piece replaced = getPiece(newX, newY);
-//		Piece moved = getPiece(x, y); TODO Legal Move Check
-		
-		if (replaced != null) {
-			deadData.add(replaced.getName());
+		Piece piece1 = getPiece(x, y);
+		Piece piece2 = getPiece(newX, newY);
+
+		// TODO: replace with piece1.getLegal(newX, newY)
+		if (piece2 == null || (piece2.getSide() != piece1.getSide())) { // Legal check
+			
+			if (piece2 != null) {
+				deadData.add(piece2.getName());
+			}
+			
+			boardData[newX + (newY*8)] = boardData[x + (y*8)];
+			boardData[x + (y*8)] = null;
+			
+			boardVersion += 1;
+
 		}
-		
-		boardData[newX + (newY*8)] = boardData[x + (y*8)];
-		boardData[x + (y*8)] = null;
-		
-		boardVersion += 1;
 		
 	}
 

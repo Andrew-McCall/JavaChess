@@ -67,24 +67,6 @@ public class Board extends JPanel implements MouseListener{
                 
             }    
         }
-        
-        
-        // Cursor
-        g2d.setColor(new Color(220, 220, 255));
-        if (cursor.getPickup()) {
-        	g2d.fillRect(
-                cursor.getX() * Main.BOXSIZE, 
-                cursor.getY() * Main.BOXSIZE, 
-                Main.BOXSIZE, 
-                Main.BOXSIZE
-                );
-        	
-        	if (this.getMousePosition() != null) {
-                g2d.drawImage(cursor.getPiece().getImage(), (int) this.getMousePosition().getX()-Main.BOXSIZE/2, (int) this.getMousePosition().getY()-Main.BOXSIZE/2, Main.BOXSIZE, Main.BOXSIZE, this);
-        	}
-
-	    }
-        
  
         // Piece Render (Has to be seperate for layers and async)
         for (int row = 0; row < 8; row++) {
@@ -99,6 +81,21 @@ public class Board extends JPanel implements MouseListener{
             }    
         }
         
+        // Cursor 
+        g2d.setColor(new Color(220, 220, 255));
+        if (cursor.getPickup()) {
+        	g2d.fillRect(
+                cursor.getX() * Main.BOXSIZE, 
+                cursor.getY() * Main.BOXSIZE, 
+                Main.BOXSIZE, 
+                Main.BOXSIZE
+                );
+        	
+        	if (this.getMousePosition() != null) {
+                g2d.drawImage(cursor.getPiece().getImage(), (int) this.getMousePosition().getX()-Main.BOXSIZE/2, (int) this.getMousePosition().getY()-Main.BOXSIZE/2, Main.BOXSIZE, Main.BOXSIZE, this);
+        	}
+
+	    }
        
     }
 	

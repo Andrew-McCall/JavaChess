@@ -98,7 +98,8 @@ public class GameLogic {
 			boardData[x + (y*8)] = null;
 			
 			boardVersion += 1;
-
+			endTurn();
+			
 		}
 		
 	}

@@ -21,10 +21,11 @@ public class Cursor {
 				
 				if (pickup) { // Picked up
 					
-					setPiece(Main.getGameLogic().getPiece(xCoords, yCoords));
-					setCoords(xCoords, yCoords);
+					selected = Main.getGameLogic().getPiece(xCoords, yCoords);
+					this.x = xCoords;
+					this.y = yCoords;
 					
-					if (getPiece() == null) {
+					if (getPiece() == null || Main.getGameLogic().getTurn() != selected.getSide()) {
 						return;
 					}
 					

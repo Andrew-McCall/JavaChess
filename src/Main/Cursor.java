@@ -1,3 +1,4 @@
+package Main;
 import pieces.Piece;
 
 public class Cursor {

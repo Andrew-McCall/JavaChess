@@ -9,6 +9,7 @@ public class GameLogic {
 	private Piece[] boardData;
 	private ArrayList<Name> deadData;
 	private int boardVersion = 0;
+	private Side turn = Side.WHITE;
 	
 	public GameLogic() {
 
@@ -57,6 +58,18 @@ public class GameLogic {
 		
 	}
 
+	public Side getTurn() {
+		return turn;
+	}
+	
+	public void endTurn() {
+		if (turn == Side.BLACK) {
+			turn = Side.WHITE;
+		}else {
+			turn = Side.BLACK;
+		}
+	}
+	
 	public Piece getPiece(int x, int y) {
 
 		return boardData[x + (y*8)];

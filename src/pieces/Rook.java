@@ -12,7 +12,6 @@ import enums.Side;
 public class Rook extends Piece{
 		
 	public Rook() {
-		super();
 
 		try {
 			
@@ -25,7 +24,6 @@ public class Rook extends Piece{
 	}
 	
 	public Rook(Side side) {
-		super();
 
 		if (side == Side.BLACK) {
 			
@@ -58,14 +56,13 @@ public class Rook extends Piece{
 	public boolean MoveLegal(int x, int y) {
 
 		Piece target = Main.getGameLogic().getPiece(x,y);
-		
-		boolean xSame = (x == getX());
-		boolean ySame = (y == getY());
 
 		if ((target != null && target.getSide() == getSide())) {
 			return false;
-		} else if (ySame) {
-			if (x>getX()) {
+		} else if (y == getY()) {
+			boolean positive = x>getX();
+
+			if (positive) {
 				x--;
 			}else {
 				x++;
@@ -74,7 +71,7 @@ public class Rook extends Piece{
 				
 				if (Main.getGameLogic().getPiece(x,y) != null) return false;
 				
-				if (x>getX()) {
+				if (positive) {
 					x--;
 				}else {
 					x++;
@@ -83,8 +80,11 @@ public class Rook extends Piece{
 			
 			return true;
 			
-		} else if (xSame) {
-			if (y>getY()) {
+		} else if (x == getX()) {
+			
+			boolean positive = y>getY();
+			
+			if (positive) {
 				y--;
 			}else {
 				y++;
@@ -93,7 +93,7 @@ public class Rook extends Piece{
 				
 				if (Main.getGameLogic().getPiece(x,y) != null) return false;
 				
-				if (y>getY()) {
+				if (positive) {
 					y--;
 				}else {
 					y++;
@@ -105,6 +105,7 @@ public class Rook extends Piece{
 		}
 		
 		return false;
+		
 	}
 
 }

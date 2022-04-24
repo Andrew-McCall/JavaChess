@@ -52,4 +52,13 @@ public class Knight extends Piece{
 	public Name getName() {
 		return Name.KNIGHT;
 	}
+	
+	@Override
+	public boolean MoveLegal(int x, int y) {
+		
+		int dx = Math.abs(getX() - x); 
+		int dy = Math.abs(getY() - y); 
+	    return (dx == 1 && dy==2 || dx  == 2 && dy==1); 
+
+	}
 }

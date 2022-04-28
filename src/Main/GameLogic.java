@@ -1,5 +1,6 @@
 package Main;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import enums.Name;
 import enums.Side;
@@ -109,6 +110,32 @@ public class GameLogic {
 		}
 		
 	}
+	
+	public boolean kingInCheck(Side side) {
+		
+		King king = (King) getPiece(Name.KING, side);
+		
+		if (king != null) {
+			return king.inCheck()
+		}
+		
+		return false;
+	}
+	
+	public Piece getPiece(Name name, Side side) {
+		
+		Piece piece = null;
+		for (Piece p : boardData){
+			if (p != null && p.getName() == name && p.getSide() == side) {
+				piece = p;
+				break;
+			}
+		}
+		
+		return piece;
+		
+	}
+	
 
 	public int getBoardVersion() {
 		return boardVersion;

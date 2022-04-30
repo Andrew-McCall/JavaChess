@@ -116,7 +116,7 @@ public class GameLogic {
 		King king = (King) getPiece(Name.KING, side);
 		
 		if (king != null) {
-			return king.inCheck()
+			return king.inCheck();
 		}
 		
 		return false;

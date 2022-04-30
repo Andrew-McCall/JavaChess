@@ -53,6 +53,8 @@ public class Pawn extends Piece{
 	@Override
 	public boolean MoveLegal(int x, int y) {
 		
+		if (Main.getGameLogic().kingInCheck(this.getSide())) return false;
+		
 		Piece target = Main.getGameLogic().getPiece(x, y);
 		
 		if (x == getX()) {

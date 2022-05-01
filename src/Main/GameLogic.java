@@ -93,8 +93,7 @@ public class GameLogic {
 		Piece piece1 = getPiece(x, y);
 		Piece piece2 = getPiece(newX, newY);
 
-		// TODO: replace with piece1.getLegal(newX, newY)
-		if (piece1.MoveLegal(newX, newY)) {
+		if (piece1.moveLegal(newX, newY)) {
 			
 			setPiece(newX, newY, piece1);
 			setPiece(x, y, null);

@@ -55,7 +55,7 @@ public class King extends Piece{
 	}
 
 	@Override
-	public boolean MoveLegal(int x, int y) {
+	public boolean moveLegal(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x,y);
 		
@@ -78,7 +78,7 @@ public class King extends Piece{
 				Piece piece = Main.getGameLogic().getPiece(i, z);
 				if (piece == null || piece.getSide()==this.getSide()) continue;
 				
-				if (piece.MoveLegal(getX(), getY())) {
+				if (piece.moveLegal(getX(), getY())) {
 					return true;
 				}
 				

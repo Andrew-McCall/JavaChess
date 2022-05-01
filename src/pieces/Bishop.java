@@ -53,4 +53,9 @@ public class Bishop extends Piece{
 		return Name.BISHOP;
 	}
 
+	@Override
+	public boolean moveLegal() {
+		
+	}
+	
 }

@@ -51,7 +51,7 @@ public class Pawn extends Piece{
 	}
 	
 	@Override
-	public boolean MoveLegal(int x, int y) {
+	public boolean moveLegal(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x, y);
 		

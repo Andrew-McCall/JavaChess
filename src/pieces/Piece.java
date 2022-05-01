@@ -39,7 +39,7 @@ public class Piece {
 		return null;
 	}
 	
-	public boolean MoveLegal(int x, int y) {
+	public boolean moveLegal(int x, int y) {
 		return false;
 	}
 

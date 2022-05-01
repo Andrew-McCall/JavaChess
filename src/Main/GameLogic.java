@@ -1,6 +1,5 @@
 package Main;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import enums.Name;
 import enums.Side;
@@ -97,15 +96,21 @@ public class GameLogic {
 		// TODO: replace with piece1.getLegal(newX, newY)
 		if (piece1.MoveLegal(newX, newY)) {
 			
-			if (piece2 != null) {
-				deadData.add(piece2.getName());
-			}
-			
-			setPiece(newX, newY, boardData[x + (y*8)]);
+			setPiece(newX, newY, piece1);
 			setPiece(x, y, null);
 			
-			boardVersion += 1;
-			endTurn();
+			if  (kingInCheck(piece1.getSide())) {
+				setPiece(newX, newY, piece2);
+				setPiece(x, y,  piece1);
+			}else {
+				
+				if (piece2 != null) {
+					deadData.add(piece2.getName());
+				}
+				
+				boardVersion += 1;
+				endTurn();
+			}
 			
 		}
 		

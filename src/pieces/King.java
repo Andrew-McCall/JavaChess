@@ -58,8 +58,6 @@ public class King extends Piece{
 	public boolean MoveLegal(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x,y);
-
-		
 		
 		if (target != null && (target.getSide() == getSide())) {
 			return false;

@@ -63,23 +63,8 @@ public class King extends Piece{
 			return false;
 		}else {
 		
-			if ( ! ((Math.abs(getX() - x )>1 || Math.abs(getY() - y )>1)) ) {
-				if (target != null && target.getName() == Name.KING) return true; // King can take king, So they can't move into other's space
-				
-				int currentX = getX();
-				int currentY = getY();
-				
-				Main.getGameLogic().setPiece(x, y, this);
-				Main.getGameLogic().setPiece(currentX, currentY, null);
-				
-				boolean danger = !(inCheck());
-				
-				Main.getGameLogic().setPiece(x, y, null);
-				Main.getGameLogic().setPiece(currentX, currentY, this);
-				return danger;
-				
-			}else return false;
-			
+			return ! ((Math.abs(getX() - x )>1 || Math.abs(getY() - y )>1)) ;
+
 		}
 
 

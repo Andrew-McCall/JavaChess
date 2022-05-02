@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Timer;
@@ -98,6 +99,15 @@ public class Board extends JPanel implements MouseListener{
 
 	    }
        
+        
+        // GUI
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        final float FONTSIZE = Main.BOXSIZE*0.4f;
+        g2d.setFont(g2d.getFont().deriveFont(FONTSIZE));
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("White", FONTSIZE/2, Main.BOXSIZE*8+FONTSIZE);
+        g2d.drawString("Black", Main.BOXSIZE*8-FONTSIZE*6/2, Main.BOXSIZE*8+FONTSIZE);
     }
 	
 	

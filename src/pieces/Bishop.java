@@ -58,9 +58,9 @@ public class Bishop extends Piece{
 	public boolean moveLegal(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x, y);
-		if (target != null && target.getSide()==this.getSide()) return false;
+		if (target != null && target.getSide()==this.getSide()) return false; // Target
 				
-		if (Math.abs(x-getX()) == Math.abs(y-getY())) {
+		if (Math.abs(x-getX()) == Math.abs(y-getY())) { // Bishop
 						
 			int i = 0;
 			int z = 0;

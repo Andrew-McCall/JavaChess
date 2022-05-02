@@ -60,46 +60,38 @@ public class Rook extends Piece{
 		if ((target != null && target.getSide() == getSide())) {
 			return false;
 		} else if (y == getY()) {
-			boolean positive = x>getX();
-
-			if (positive) {
-				x--;
-			}else {
-				x++;
-			}
+			
 			while (x != getX()) {
 				
-				if (Main.getGameLogic().getPiece(x,y) != null) return false;
-				
-				if (positive) {
+				if (x>getX()) {
 					x--;
 				}else {
 					x++;
 				}
+				
+				if (y == getY()) continue;
+
+				if (Main.getGameLogic().getPiece(x,y) != null) return false;
+				
 			}
 			
 			return true;
 			
 		} else if (x == getX()) {
 			
-			boolean positive = y>getY();
-			
-			if (positive) {
-				y--;
-			}else {
-				y++;
-			}
 			while (y != getY()) {
 				
-				if (Main.getGameLogic().getPiece(x,y) != null) return false;
-				
-				if (positive) {
+				if (y>getY()) {
 					y--;
 				}else {
 					y++;
 				}
+				
+				if (y == getY()) continue;
+				
+				if (Main.getGameLogic().getPiece(x,y) != null) return false;
+				
 			}
-
 			return true;
 			
 		}

@@ -21,12 +21,12 @@ public class GameLogic {
 		
 		// Black 
 		setPiece(0, 0, new Rook(Side.BLACK));
-		setPiece(1, 0, new Bishop(Side.BLACK));
-		setPiece(2, 0, new Knight(Side.BLACK));
+		setPiece(1, 0, new Knight(Side.BLACK));
+		setPiece(2, 0, new Bishop(Side.BLACK));
 		setPiece(3, 0, new King(Side.BLACK));
 		setPiece(4, 0, new Queen(Side.BLACK));
-		setPiece(5, 0, new Knight(Side.BLACK));
-		setPiece(6, 0, new Bishop(Side.BLACK));
+		setPiece(5, 0, new Bishop(Side.BLACK));
+		setPiece(6, 0, new Knight(Side.BLACK));
 		setPiece(7, 0, new Rook(Side.BLACK));
 		
 		setPiece(0, 1, new Pawn(Side.BLACK));

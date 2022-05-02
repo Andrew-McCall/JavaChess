@@ -1,21 +1,45 @@
 package Main;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
+
 
 import enums.Name;
 import enums.Side;
 import pieces.*;
 
-public class GameLogic {
+public class GameLogic implements ActionListener {
 
 	private Piece[] boardData;
 	private ArrayList<Name> deadData;
 	private int boardVersion = 0;
 	private Side turn = Side.WHITE;
+	private int[] counter = new int[2];
 	
+	public int[] getCounter() {
+		return counter;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (this.getTurn()){
+			case WHITE:
+				counter[0] += 1;
+				break;
+			case BLACK:
+				counter[1] += 1;
+				break;
+		}
+	}
+	
+		
 	public GameLogic() {
 
 		boardData = new Piece[64];
 		deadData = new ArrayList<Name>();
+		Timer timer = new Timer(100, this);
 		
 		/// Standard Board
 		
@@ -57,6 +81,7 @@ public class GameLogic {
 		setPiece(6, 6, new Pawn());
 		setPiece(7, 6, new Pawn());
 		
+		timer.start(); 
 	}
 
 	public Side getTurn() {
@@ -144,5 +169,7 @@ public class GameLogic {
 	public int getBoardVersion() {
 		return boardVersion;
 	}
+
+
 	
 }

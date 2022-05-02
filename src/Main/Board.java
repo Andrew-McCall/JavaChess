@@ -1,4 +1,5 @@
 package Main;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -13,38 +14,35 @@ import javax.swing.JPanel;
 
 import pieces.Piece;
 
-public class Board extends JPanel implements MouseListener{
+public class Board extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 4203437795153052318L;
-	
+
 	private Cursor cursor = new Cursor();
-	
+
 	private Timer paintCall = new Timer();
-	
+
 	public Cursor getChessCursor() {
 		return cursor;
 	}
-
 
 	public void getChessCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
 
-
 	public Board() {
-		
+
 		super.addMouseListener(this);
 		setPreferredSize(new Dimension(Main.BOXSIZE * 8, Main.BOXSIZE * 9));
-		
-		paintCall.schedule(new TimerTask(){
+
+		paintCall.schedule(new TimerTask() {
 			@Override
-	        public void run() {
-	            Board.super.repaint();
-	        }
-		}, 100, 1000/Main.FPS);
+			public void run() {
+				Board.super.repaint();
+			}
+		}, 100, 1000 / Main.FPS);
 	}
-	
-	
+
 	@Override
     public void paintComponent(Graphics g) {
 		// Boiler Then BG
@@ -106,35 +104,37 @@ public class Board extends JPanel implements MouseListener{
         final float FONTSIZE = Main.BOXSIZE*0.4f;
         g2d.setFont(g2d.getFont().deriveFont(FONTSIZE));
         g2d.setColor(Color.BLACK);
+
         g2d.drawString("White", FONTSIZE/2, Main.BOXSIZE*8+FONTSIZE);
+        g2d.drawString(String.valueOf(Main.getGameLogic().getCounter()[0]/10f), FONTSIZE/2, Main.BOXSIZE*8+FONTSIZE*2);
+
         g2d.drawString("Black", Main.BOXSIZE*8-FONTSIZE*6/2, Main.BOXSIZE*8+FONTSIZE);
-    }
-	
-	
-	
-	
+        g2d.drawString(String.valueOf(Main.getGameLogic().getCounter()[1]/10f), Main.BOXSIZE*8-FONTSIZE*6/2, Main.BOXSIZE*8+FONTSIZE*2);
+
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+
 		cursor.setPickup(true, e.getX(), e.getY());
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+
 		cursor.setPickup(false, e.getX(), e.getY());
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
-	
+
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}

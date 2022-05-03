@@ -12,11 +12,11 @@ public class Cursor {
 
 	
 
-	public void setPickup(boolean pickup, int x, int y) { 
+	public void setPickup(boolean pickup, int newX, int newY) { 
 		
 		if (pickup != this.pickup) {
-			int xCoords = x/Main.BOXSIZE;
-			int yCoords = y/Main.BOXSIZE;
+			int xCoords = newX/Main.BOXSIZE;
+			int yCoords = newY/Main.BOXSIZE;
 						
 			if (xCoords < 8 && yCoords < 8  &&  xCoords>=0 & yCoords>=0) {
 				
@@ -33,9 +33,9 @@ public class Cursor {
 					Main.getGameLogic().setPiece(xCoords, yCoords, null);
 					
 				}else { // New place
-					
-					Main.getGameLogic().setPiece(this.x, this.y, this.selected);
-					Main.getGameLogic().movePiece(this.x, this.y, xCoords, yCoords);
+
+					Main.getGameLogic().setPiece(this.x, this.y, selected);
+					selected.move(xCoords, yCoords);
 					
 				}
 				

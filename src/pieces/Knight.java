@@ -55,16 +55,18 @@ public class Knight extends Piece{
 	}
 	
 	@Override
-	public boolean moveLegal(int x, int y) {
+	public void move(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x,y);
+		int dx = Math.abs(getX() - x); 
+		int dy = Math.abs(getY() - y); 
+		
+		if ((target == null || target.getSide() != getSide()) && (dx == 1 && dy==2 || dx  == 2 && dy==1)) {
+			
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
 
-		if ((target != null && target.getSide() == getSide())) {
-			return false;
-		}else {
-			int dx = Math.abs(getX() - x); 
-			int dy = Math.abs(getY() - y); 
-		    return (dx == 1 && dy==2 || dx  == 2 && dy==1); 
 		}
 		
 

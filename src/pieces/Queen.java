@@ -55,11 +55,11 @@ public class Queen extends Piece{
 	}
 	
 	@Override
-	public boolean moveLegal(int x, int y) {
+	public void move(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x, y);
-		if (target != null && target.getSide()==this.getSide()) return false;
-				
+		if (target != null && target.getSide()==this.getSide()) return;
+		
 		if (Math.abs(x-getX()) == Math.abs(y-getY())) {
 						
 			int i = 0;
@@ -74,11 +74,13 @@ public class Queen extends Piece{
 				
 				if (getX()-i == x && getY()-z == y)continue;
 				
-				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return false;
+				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return;
 				
 			}
 			
-			return true;
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
 			
 		}if (y == getY()) {
 			
@@ -92,11 +94,13 @@ public class Queen extends Piece{
 				
 				if (y == getY()) continue;
 
-				if (Main.getGameLogic().getPiece(x,y) != null) return false;
+				if (Main.getGameLogic().getPiece(x,y) != null) return;
 				
 			}
 			
-			return true;
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
 			
 		} else if (x == getX()) {
 			
@@ -110,14 +114,15 @@ public class Queen extends Piece{
 				
 				if (y == getY()) continue;
 				
-				if (Main.getGameLogic().getPiece(x,y) != null) return false;
+				if (Main.getGameLogic().getPiece(x,y) != null) return;
 				
 			}
-			return true;
+			
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
 			
 		}
-		
-		return false;
 		
 	}
 }

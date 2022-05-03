@@ -55,36 +55,35 @@ public class King extends Piece{
 	}
 
 	@Override
-	public boolean moveLegal(int x, int y) {
+	public void move(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x,y);
 		
-		if (target != null && (target.getSide() == getSide())) {
-			return false;
-		}else {
+		if ((target == null || target.getSide() != getSide()) && (Math.abs(getX() - x )<=1 || Math.abs(getY() - y )<=1)) {
+
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
+
+		}
 		
-			return ! ((Math.abs(getX() - x )>1 || Math.abs(getY() - y )>1)) ;
-
-		}
-
-
 	}
-
-	public boolean inCheck() {
-		for (int i = 0; i < 8; i++) {
-			for (int z = 0; z < 8; z++) {
-				if (i == getX() && z == getY()) continue;
-				
-				Piece piece = Main.getGameLogic().getPiece(i, z);
-				if (piece == null || piece.getSide()==this.getSide()) continue;
-				
-				if (piece.moveLegal(getX(), getY())) {
-					return true;
-				}
-				
-			}
-		}
-		return false;
-	}
-	
+//
+//	public boolean inCheck() {
+//		for (int i = 0; i < 8; i++) {
+//			for (int z = 0; z < 8; z++) {
+//				if (i == getX() && z == getY()) continue;
+//				
+//				Piece piece = Main.getGameLogic().getPiece(i, z);
+//				if (piece == null || piece.getSide()==this.getSide()) continue;
+//				
+//				if (piece.moveLegal(getX(), getY())) {
+//					return true;
+//				}
+//				
+//			}
+//		}
+//		return false;
+//	}
+//	
 }

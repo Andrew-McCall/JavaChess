@@ -53,12 +53,12 @@ public class Rook extends Piece{
 	}
 	
 	@Override
-	public boolean moveLegal(int x, int y) {
+	public void move(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x,y);
 
 		if ((target != null && target.getSide() == getSide())) {
-			return false;
+			return;
 		} else if (y == getY()) {
 			
 			while (x != getX()) {
@@ -71,11 +71,13 @@ public class Rook extends Piece{
 				
 				if (y == getY()) continue;
 
-				if (Main.getGameLogic().getPiece(x,y) != null) return false;
+				if (Main.getGameLogic().getPiece(x,y) != null) return ;
 				
 			}
 			
-			return true;
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
 			
 		} else if (x == getX()) {
 			
@@ -89,14 +91,15 @@ public class Rook extends Piece{
 				
 				if (y == getY()) continue;
 				
-				if (Main.getGameLogic().getPiece(x,y) != null) return false;
+				if (Main.getGameLogic().getPiece(x,y) != null) return ;
 				
 			}
-			return true;
+			System.out.println("err");
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
 			
 		}
-		
-		return false;
 		
 	}
 

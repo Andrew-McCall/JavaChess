@@ -51,7 +51,7 @@ public class Pawn extends Piece{
 	}
 	
 	@Override
-	public boolean moveLegal(int x, int y) {
+	public void move(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x, y);
 		
@@ -63,39 +63,47 @@ public class Pawn extends Piece{
 				if (getSide() == Side.BLACK) {
 					modifer = -1;
 				}
-								
-				if (y + modifer == getY()) {
-					return true;
-					
-				}else if (y + modifer + modifer == getY() && 3.5 + (modifer)*2.5 == getY()){
-						
-					return (Main.getGameLogic().getPiece(x, y + modifer) == null);
+				
+				if ( Main.getGameLogic().getPiece(x, y ) == null && (y + modifer == getY() || (y+modifer+modifer == getY() && 3.5 + (modifer)*2.5 == getY() && target == null ) )){
+
+					Main.getGameLogic().setPiece(x, y, this);
+					Main.getGameLogic().endTurn();
 					
 				}
 				
 			}
 
-		}else if ((x+1 == getX() || x-1 == getX()) && target != null ) {
+		}else if ((x+1 == getX() || x-1 == getX())) {
 			
-			// TODO: En Passant
 			if ((getSide() == Side.WHITE && getY() == y + 1 ) || (getSide() == Side.BLACK && getY() == y - 1 )) {
-				return !(target.getSide() == getSide());
+				
+				if (target != null && target.getSide() != getSide()) {
+					
+					Main.getGameLogic().killPiece(target);
+					Main.getGameLogic().setPiece(x, y, this);
+					Main.getGameLogic().endTurn();
+
+					
+				} else {
+					if  (getSide() == Side.WHITE) {
+						target = Main.getGameLogic().getPiece(x, y+1);
+					}else {
+						target = Main.getGameLogic().getPiece(x, y-1);
+					}
+					if (target != null && target.getSide() != getSide()) {
+
+						Main.getGameLogic().killPiece(target);
+						Main.getGameLogic().setPiece(target.getX(), target.getY(), null);
+						Main.getGameLogic().setPiece(x, y, this);
+						Main.getGameLogic().endTurn();
+						
+					}
+				}
 			}
 			
-		}
 			
-		
-		return false;
-		// Forward 1 IF empty
-		
-		// Forward 2 IF y == 2 AND empty empty
-		
-		// Take LEFT/RIGHT IF enemy
-		
-		
-		
-		
-		
+			
+		}
 		
 	}
 

@@ -12,7 +12,16 @@ public class Piece {
 	private int yCoord;
 	private BufferedImage image;
 	private Side side = Side.WHITE;
+	private int lastMove = 0;
 	
+	public int getLastMove() {
+		return lastMove;
+	}
+
+	public void setLastMove(int lastMove) {
+		this.lastMove = lastMove;
+	}
+
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
@@ -37,10 +46,6 @@ public class Piece {
 
 	public int[][] getMoves() {
 		return null;
-	}
-	
-	public boolean moveLegal(int x, int y) {
-		return false;
 	}
 
 
@@ -75,6 +80,10 @@ public class Piece {
 
 		return image;
 		
+	}
+
+	public void move(int xCoords, int yCoords) {
+		// Main.getGameLogic().endTurn();
 	}
 
 }

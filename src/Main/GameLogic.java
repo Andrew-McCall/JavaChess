@@ -44,7 +44,6 @@ public class GameLogic implements ActionListener {
 		/// Standard Board
 		
 		// Black 
-		setPiece(0, 0, new Rook(Side.BLACK));
 		setPiece(1, 0, new Knight(Side.BLACK));
 		setPiece(2, 0, new Bishop(Side.BLACK));
 		setPiece(3, 0, new King(Side.BLACK));
@@ -81,6 +80,7 @@ public class GameLogic implements ActionListener {
 		setPiece(6, 6, new Pawn());
 		setPiece(7, 6, new Pawn());
 		
+		setPiece(0, 0, new Rook(Side.BLACK));
 		timer.start(); 
 	}
 
@@ -94,6 +94,7 @@ public class GameLogic implements ActionListener {
 		}else {
 			turn = Side.BLACK;
 		}
+		boardVersion++;
 	}
 	
 	public Piece getPiece(int x, int y) {
@@ -104,52 +105,33 @@ public class GameLogic implements ActionListener {
 	
 	public void setPiece(int x, int y, Piece piece) {
 
-		boardData[x + (y*8)] = piece;
-
 		if (piece != null) {
+			boardData[piece.getX() + 8* piece.getY()] = null;
 			piece.setX(x);
 			piece.setY(y);
 		}
 		
-	}
-	
-	public void movePiece(int x, int y, int newX, int newY) {
-		
-		Piece piece1 = getPiece(x, y);
-		Piece piece2 = getPiece(newX, newY);
-
-		if (piece1.moveLegal(newX, newY)) {
-			
-			setPiece(newX, newY, piece1);
-			setPiece(x, y, null);
-			
-			if  (kingInCheck(piece1.getSide())) {
-				setPiece(newX, newY, piece2);
-				setPiece(x, y,  piece1);
-			}else {
-				
-				if (piece2 != null) {
-					deadData.add(piece2.getName());
-				}
-				
-				boardVersion += 1;
-				endTurn();
-			}
-			
-		}
+		boardData[x + y*8] = piece;
 		
 	}
 	
-	public boolean kingInCheck(Side side) {
-		
-		King king = (King) getPiece(Name.KING, side);
-		
-		if (king != null) {
-			return king.inCheck();
+	public void killPiece(Piece piece) {
+		if (piece != null) {
+			deadData.add(piece.getName());
+//			setPiece(piece.getX(), piece.getY(), null);
 		}
-		
-		return false;
 	}
+	
+//	public boolean kingInCheck(Side side) {
+//		
+//		King king = (King) getPiece(Name.KING, side);
+//		
+//		if (king != null) {
+//			return king.inCheck();
+//		}
+//		
+//		return false;
+//	}
 	
 	public Piece getPiece(Name name, Side side) {
 		

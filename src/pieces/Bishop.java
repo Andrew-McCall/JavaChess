@@ -55,12 +55,10 @@ public class Bishop extends Piece{
 	}
 	
 	@Override
-	public boolean moveLegal(int x, int y) {
+	public void move(int x, int y) {
 		
 		Piece target = Main.getGameLogic().getPiece(x, y);
-		if (target != null && target.getSide()==this.getSide()) return false; // Target
-				
-		if (Math.abs(x-getX()) == Math.abs(y-getY())) { // Bishop
+		if ((target == null || target.getSide() != this.getSide()) && Math.abs(x-getX()) == Math.abs(y-getY())) { // Bishop
 						
 			int i = 0;
 			int z = 0;
@@ -74,15 +72,15 @@ public class Bishop extends Piece{
 				
 				if (getX()-i == x && getY()-z == y)continue;
 				
-				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return false;
+				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return;
 				
 			}
 			
-			return true;
-			
+			Main.getGameLogic().killPiece(target);
+			Main.getGameLogic().setPiece(x, y, this);
+			Main.getGameLogic().endTurn();
+
 		}
-		
-		return false;
 		
 	}
 

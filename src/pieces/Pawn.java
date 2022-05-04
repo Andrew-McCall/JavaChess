@@ -90,7 +90,8 @@ public class Pawn extends Piece{
 					}else {
 						target = Main.getGameLogic().getPiece(x, y-1);
 					}
-					if (target != null && target.getSide() != getSide()) {
+					
+					if (target != null && target.getSide() != getSide() && target.getLastMove()+1 == Main.getGameLogic().getBoardVersion()) {
 
 						Main.getGameLogic().killPiece(target);
 						Main.getGameLogic().setPiece(target.getX(), target.getY(), null);

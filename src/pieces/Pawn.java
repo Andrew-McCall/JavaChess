@@ -2,6 +2,9 @@ package pieces;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -44,7 +47,21 @@ public class Pawn extends Piece{
 		}
 		
 	}
+	
+	@Override
+	public ArrayList getMoves() {
+		ArrayList<List<Integer>> moves = new ArrayList<List<Integer>>(); 
 
+		int forward = (Side.WHITE == getSide()) ? -1 : 1 ;
+		
+		if (Main.getGameLogic().getPiece(getX(), getY()+forward) == null) {
+			
+		}
+		
+		
+		return moves.toArray();
+	}
+	
 	@Override
 	public Name getName() {
 		return Name.PAWN;

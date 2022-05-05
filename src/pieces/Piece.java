@@ -2,6 +2,7 @@ package pieces;
 
 import java.awt.image.BufferedImage;
 
+import Main.Coordinate;
 import enums.Name;
 import enums.Side;
 
@@ -44,7 +45,7 @@ public class Piece {
 	}
 	
 
-	public int[][] getMoves() {
+	public Coordinate[] getMoves() {
 		return null;
 	}
 

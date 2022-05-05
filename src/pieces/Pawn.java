@@ -3,11 +3,10 @@ package pieces;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import Main.Coordinate;
 import Main.Main;
 import enums.Name;
 import enums.Side;
@@ -49,17 +48,42 @@ public class Pawn extends Piece{
 	}
 	
 	@Override
-	public ArrayList getMoves() {
-		ArrayList<List<Integer>> moves = new ArrayList<List<Integer>>(); 
+	public Coordinate[] getMoves() {
+		ArrayList<Coordinate> moves = new ArrayList<Coordinate>(); 
 
 		int forward = (Side.WHITE == getSide()) ? -1 : 1 ;
 		
 		if (Main.getGameLogic().getPiece(getX(), getY()+forward) == null) {
+			moves.add(new Coordinate(getX(), getY()+forward));
+			
+			if (3.5 + (forward)*2.5 == getY() && Main.getGameLogic().getPiece(getX(), getY()+forward+forward) == null ){
+				moves.add(new Coordinate(getX(), getY()+forward+forward));
+			}
 			
 		}
 		
+		Piece takeLeft = Main.getGameLogic().getPiece(getX()-1, getY()+forward);
+		if ( takeLeft != null && takeLeft.getSide() != getSide() ) {
+			moves.add(new Coordinate(takeLeft.getX(), takeLeft.getY()));
+		}
 		
-		return moves.toArray();
+		Piece takeRight = Main.getGameLogic().getPiece(getX()+1, getY()+forward);
+		if ( takeRight != null && takeRight.getSide() != getSide() ) {
+			moves.add(new Coordinate(takeRight.getX(), takeRight.getY()));
+		}
+		
+		Piece enPassantLeft = Main.getGameLogic().getPiece(getX()-1, getY());
+		if ( enPassantLeft != null && enPassantLeft.getSide() != getSide() ) {
+			moves.add(new Coordinate(getX()-1, getY()));
+		}
+		
+		Piece enPassantRight = Main.getGameLogic().getPiece(getX()+1, getY());
+		if ( enPassantRight != null && enPassantRight.getSide() != getSide() ) {
+			moves.add(new Coordinate(getX()+1, getY()));
+		}
+		
+		
+		return (Coordinate[]) moves.toArray();
 	}
 	
 	@Override

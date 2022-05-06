@@ -35,7 +35,9 @@ public class Cursor {
 				}else { // Put Down
 					
 					Main.getGameLogic().setPiece(this.x, this.y, selected); // Piece in old location
-					selected.move(new Coordinate(xCoords, yCoords));
+					if (selected.move(new Coordinate(xCoords, yCoords))) {
+						Main.getGameLogic().endTurn();
+					}
 					
 				}
 				

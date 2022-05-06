@@ -74,15 +74,18 @@ public class Piece {
 		
 	}
 
-	public void move(Coordinate coords) {
-		
-		getMoves().stream().forEach(legal -> {
-			if (coords.equals(legal)) {
+	public boolean move(Coordinate coords) {
+		var process = new Object() {boolean legal = false;};
+
+		getMoves().stream().forEach(legalCoords -> {
+			if (coords.equals(legalCoords)) {
 				Piece target = Main.getGameLogic().getPiece(coords.getX(), coords.getY());
 				Main.getGameLogic().killPiece(target);
 				Main.getGameLogic().setPiece(coords, this);
+				process.legal = true;
 			}
 		});
+		return process.legal;
 		
 	}
 

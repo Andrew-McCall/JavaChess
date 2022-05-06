@@ -10,7 +10,7 @@ public class Coordinate {
 		
 		Coordinate obj1 = (Coordinate) obj;
 		
-		return (obj1.getX() == this.x && obj1.getX() == this.y);
+		return (obj1.getX() == this.x && obj1.getY() == this.y);
 		
 	}
 

@@ -74,12 +74,12 @@ public class Pawn extends Piece{
 		
 		Piece enPassantLeft = Main.getGameLogic().getPiece(getX()-1, getY());
 		if ( enPassantLeft != null && enPassantLeft.getSide() != getSide() ) {
-			moves.add(new Coordinate(getX()-1, getY()));
+			moves.add(new Coordinate(getX()-1, getY()+forward));
 		}
 		
 		Piece enPassantRight = Main.getGameLogic().getPiece(getX()+1, getY());
 		if ( enPassantRight != null && enPassantRight.getSide() != getSide() ) {
-			moves.add(new Coordinate(getX()+1, getY()));
+			moves.add(new Coordinate(getX()+1, getY()+forward));
 		}
 		
 		

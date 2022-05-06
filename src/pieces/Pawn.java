@@ -104,7 +104,6 @@ public class Pawn extends Piece{
 					if (target == null) { // en Passant
 						target = Main.getGameLogic().getPiece(coords.getX(), getY());
 					}
-					System.out.println(target);
 					Main.getGameLogic().killPiece(target);
 					Main.getGameLogic().setPiece(target.getCoords(), null); 
 					Main.getGameLogic().setPiece(coords, this); 

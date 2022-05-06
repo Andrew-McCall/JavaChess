@@ -82,7 +82,6 @@ public class Pawn extends Piece{
 			moves.add(new Coordinate(getX()+1, getY()+forward));
 		}
 		
-		
 		return moves;
 	}
 	
@@ -91,9 +90,31 @@ public class Pawn extends Piece{
 		return Name.PAWN;
 	}
 	
-	
+	public boolean move(Coordinate coords) {
+		var process = new Object() {boolean legal = false;};
 
-	
+		getMoves().stream().forEach(legalCoords -> {
+			if (coords.equals(legalCoords)) {
+				
+				if (coords.getX() == getX()) { 
+					Main.getGameLogic().setPiece(coords, this);
+				}else {
+					Piece target = Main.getGameLogic().getPiece(coords.getX(), coords.getY());
+					if (target == null) { // en Passant
+						target = Main.getGameLogic().getPiece(coords.getX(), getY());
+					}
+					System.out.println(target);
+					Main.getGameLogic().killPiece(target);
+					Main.getGameLogic().setPiece(target.getCoords(), null); 
+					Main.getGameLogic().setPiece(coords, this); 
+				}				
+				
+				process.legal = true;
+			}
+		});
+		return process.legal;
+		
+	}
 	
 //	@Override
 //	public void move(Coordinate coords) {

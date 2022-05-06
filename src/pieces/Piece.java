@@ -16,6 +16,10 @@ public class Piece {
 	private Side side = Side.WHITE;
 	private int lastMove = 0;
 	
+	public Coordinate getCoords() {
+		return new Coordinate(getX(), getY());
+	}
+	
 	public int getLastMove() {
 		return lastMove;
 	}

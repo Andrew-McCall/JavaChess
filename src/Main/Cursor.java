@@ -32,10 +32,10 @@ public class Cursor {
 					
 					Main.getGameLogic().setPiece(xCoords, yCoords, null);
 					
-				}else { // New place
-
-					Main.getGameLogic().setPiece(this.x, this.y, selected);
-					selected.move(xCoords, yCoords);
+				}else { // Put Down
+					
+					Main.getGameLogic().setPiece(this.x, this.y, selected); // Piece in old location
+					selected.move(new Coordinate(xCoords, yCoords));
 					
 				}
 				

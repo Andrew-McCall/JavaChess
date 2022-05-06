@@ -48,15 +48,15 @@ public class Pawn extends Piece{
 	}
 	
 	@Override
-	public Coordinate[] getMoves() {
+	public ArrayList<Coordinate> getMoves() {
 		ArrayList<Coordinate> moves = new ArrayList<Coordinate>(); 
 
 		int forward = (Side.WHITE == getSide()) ? -1 : 1 ;
 		
 		if (Main.getGameLogic().getPiece(getX(), getY()+forward) == null) {
 			moves.add(new Coordinate(getX(), getY()+forward));
-			
-			if (3.5 + (forward)*2.5 == getY() && Main.getGameLogic().getPiece(getX(), getY()+forward+forward) == null ){
+
+			if (Math.floor(3.5 - (forward)*2.5) == getY() && Main.getGameLogic().getPiece(getX(), getY()+forward+forward) == null ){
 				moves.add(new Coordinate(getX(), getY()+forward+forward));
 			}
 			
@@ -83,7 +83,7 @@ public class Pawn extends Piece{
 		}
 		
 		
-		return (Coordinate[]) moves.toArray();
+		return moves;
 	}
 	
 	@Override
@@ -91,62 +91,66 @@ public class Pawn extends Piece{
 		return Name.PAWN;
 	}
 	
-	@Override
-	public void move(int x, int y) {
-		
-		Piece target = Main.getGameLogic().getPiece(x, y);
-		
-		if (x == getX()) {
-			
-			if (target == null) {
-				int modifer = 1;
-						
-				if (getSide() == Side.BLACK) {
-					modifer = -1;
-				}
-				
-				if ( Main.getGameLogic().getPiece(x, y ) == null && (y + modifer == getY() || (y+modifer+modifer == getY() && 3.5 + (modifer)*2.5 == getY() && target == null ) )){
+	
 
-					Main.getGameLogic().setPiece(x, y, this);
-					Main.getGameLogic().endTurn();
-					
-				}
-				
-			}
-
-		}else if ((x+1 == getX() || x-1 == getX())) {
-			
-			if ((getSide() == Side.WHITE && getY() == y + 1 ) || (getSide() == Side.BLACK && getY() == y - 1 )) {
-				
-				if (target != null && target.getSide() != getSide()) {
-					
-					Main.getGameLogic().killPiece(target);
-					Main.getGameLogic().setPiece(x, y, this);
-					Main.getGameLogic().endTurn();
-
-					
-				} else {
-					if  (getSide() == Side.WHITE) {
-						target = Main.getGameLogic().getPiece(x, y+1);
-					}else {
-						target = Main.getGameLogic().getPiece(x, y-1);
-					}
-					
-					if (target != null && target.getSide() != getSide() && target.getLastMove()+1 == Main.getGameLogic().getBoardVersion()) {
-
-						Main.getGameLogic().killPiece(target);
-						Main.getGameLogic().setPiece(target.getX(), target.getY(), null);
-						Main.getGameLogic().setPiece(x, y, this);
-						Main.getGameLogic().endTurn();
-						
-					}
-				}
-			}
-			
-			
-			
-		}
-		
-	}
+	
+	
+//	@Override
+//	public void move(Coordinate coords) {
+//		
+//		Piece target = Main.getGameLogic().getPiece(x, y);
+//		
+//		if (x == getX()) {
+//			
+//			if (target == null) {
+//				int modifer = 1;
+//						
+//				if (getSide() == Side.BLACK) {
+//					modifer = -1;
+//				}
+//				
+//				if ( Main.getGameLogic().getPiece(x, y ) == null && (y + modifer == getY() || (y+modifer+modifer == getY() && 3.5 + (modifer)*2.5 == getY() && target == null ) )){
+//
+//					Main.getGameLogic().setPiece(x, y, this);
+//					Main.getGameLogic().endTurn();
+//					
+//				}
+//				
+//			}
+//
+//		}else if ((x+1 == getX() || x-1 == getX())) {
+//			
+//			if ((getSide() == Side.WHITE && getY() == y + 1 ) || (getSide() == Side.BLACK && getY() == y - 1 )) {
+//				
+//				if (target != null && target.getSide() != getSide()) {
+//					
+//					Main.getGameLogic().killPiece(target);
+//					Main.getGameLogic().setPiece(x, y, this);
+//					Main.getGameLogic().endTurn();
+//
+//					
+//				} else {
+//					if  (getSide() == Side.WHITE) {
+//						target = Main.getGameLogic().getPiece(x, y+1);
+//					}else {
+//						target = Main.getGameLogic().getPiece(x, y-1);
+//					}
+//					
+//					if (target != null && target.getSide() != getSide() && target.getLastMove()+1 == Main.getGameLogic().getBoardVersion()) {
+//
+//						Main.getGameLogic().killPiece(target);
+//						Main.getGameLogic().setPiece(target.getX(), target.getY(), null);
+//						Main.getGameLogic().setPiece(x, y, this);
+//						Main.getGameLogic().endTurn();
+//						
+//					}
+//				}
+//			}
+//			
+//			
+//			
+//		}
+//		
+//	}
 
 }

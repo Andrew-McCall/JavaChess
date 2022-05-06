@@ -103,6 +103,12 @@ public class GameLogic implements ActionListener {
 		
 	}
 	
+	public Piece getPiece(Coordinate coords) {
+
+		return boardData[coords.getX() + (coords.getY()*8)];
+		
+	}
+	
 	public void setPiece(int x, int y, Piece piece) {
 
 		if (piece != null) {
@@ -113,6 +119,19 @@ public class GameLogic implements ActionListener {
 		}
 		
 		boardData[x + y*8] = piece;
+		
+	}
+	
+	public void setPiece(Coordinate coords, Piece piece) {
+
+		if (piece != null) {
+			boardData[piece.getX() + 8* piece.getY()] = null;
+			piece.setLastMove(boardVersion);
+			piece.setX(coords.getX());
+			piece.setY(coords.getY());
+		}
+		
+		boardData[coords.getX() + (coords.getY()*8)] = piece;
 		
 	}
 	

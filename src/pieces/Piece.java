@@ -1,14 +1,15 @@
 package pieces;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import Main.Coordinate;
+import Main.Main;
 import enums.Name;
 import enums.Side;
 
 public class Piece {
 
-	private boolean alive = true;
 	private int xCoord;
 	private int yCoord;
 	private BufferedImage image;
@@ -22,15 +23,6 @@ public class Piece {
 	public void setLastMove(int lastMove) {
 		this.lastMove = lastMove;
 	}
-
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
-	
-	public boolean getAlive() {
-		return alive;
-	}
-
 	
 	public Name getName() {
 		return null;
@@ -45,10 +37,9 @@ public class Piece {
 	}
 	
 
-	public Coordinate[] getMoves() {
+	public ArrayList<Coordinate> getMoves() {
 		return null;
 	}
-
 
 	public void setX(int x) {
 		xCoord = x;
@@ -83,8 +74,16 @@ public class Piece {
 		
 	}
 
-	public void move(int xCoords, int yCoords) {
-		// Main.getGameLogic().endTurn();
+	public void move(Coordinate coords) {
+		
+		getMoves().stream().forEach(legal -> {
+			if (coords.equals(legal)) {
+				Piece target = Main.getGameLogic().getPiece(coords.getX(), coords.getY());
+				Main.getGameLogic().killPiece(target);
+				Main.getGameLogic().setPiece(coords, this);
+			}
+		});
+		
 	}
 
 }

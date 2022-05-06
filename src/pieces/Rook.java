@@ -57,11 +57,13 @@ public class Rook extends Piece{
 	public ArrayList<Coordinate> getMoves() {
 		ArrayList<Coordinate> moves = new	ArrayList<Coordinate>();
 		
+		// All Directions
 		line(1 , 0).stream().forEach(legal -> moves.add(legal));
 		line(-1, 0).stream().forEach(legal -> moves.add(legal));
 		line(0 , 1).stream().forEach(legal -> moves.add(legal));
 		line(0 ,-1).stream().forEach(legal -> moves.add(legal));
 
+		// TODO: Castling
 		
 		return moves;
 	}

@@ -96,35 +96,4 @@ public class Bishop extends Piece{
 		return moves;		
 	}
 	
-//	@Override
-//	public void move(int x, int y) {
-//		
-//		Piece target = Main.getGameLogic().getPiece(x, y);
-//		if ((target == null || target.getSide() != this.getSide()) && Math.abs(x-getX()) == Math.abs(y-getY())) { // Bishop
-//						
-//			int i = 0;
-//			int z = 0;
-//			while (getX()!=x+i) {
-//				
-//				if (x<getX()) i++; 
-//				else i--;
-//				
-//				if (y<getY()) z++;
-//				else z--;
-//				
-//				if (getX()-i == x && getY()-z == y)continue;
-//				
-//				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return;
-//				
-//			}
-//			
-//			Main.getGameLogic().killPiece(target);
-//			Main.getGameLogic().setPiece(x, y, this);
-//			Main.getGameLogic().endTurn();
-//
-//		}
-//		
-//	}
-
-	
 }

@@ -2,10 +2,11 @@ package pieces;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import Main.Main;
+import Main.Coordinate;
 import enums.Name;
 import enums.Side;
 
@@ -53,54 +54,16 @@ public class Rook extends Piece{
 	}
 	
 	@Override
-	public void move(int x, int y) {
+	public ArrayList<Coordinate> getMoves() {
+		ArrayList<Coordinate> moves = new	ArrayList<Coordinate>();
 		
-		Piece target = Main.getGameLogic().getPiece(x,y);
+		line(1 , 0).stream().forEach(legal -> moves.add(legal));
+		line(-1, 0).stream().forEach(legal -> moves.add(legal));
+		line(0 , 1).stream().forEach(legal -> moves.add(legal));
+		line(0 ,-1).stream().forEach(legal -> moves.add(legal));
 
-		if ((target != null && target.getSide() == getSide())) {
-			return;
-		} else if (y == getY()) {
-			
-			while (x != getX()) {
-				
-				if (x>getX()) {
-					x--;
-				}else {
-					x++;
-				}
-				
-				if (y == getY()) continue;
-
-				if (Main.getGameLogic().getPiece(x,y) != null) return ;
-				
-			}
-			
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
-			
-		} else if (x == getX()) {
-			
-			while (y != getY()) {
-				
-				if (y>getY()) {
-					y--;
-				}else {
-					y++;
-				}
-				
-				if (y == getY()) continue;
-				
-				if (Main.getGameLogic().getPiece(x,y) != null) return ;
-				
-			}
-			System.out.println("err");
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
-			
-		}
 		
+		return moves;
 	}
-
+		
 }

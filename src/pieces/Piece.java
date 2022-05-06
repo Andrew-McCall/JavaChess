@@ -40,7 +40,32 @@ public class Piece {
 		return side;
 	}
 	
+	// Used by rook, bishop, queen
+	public ArrayList<Coordinate> line (int xd, int yd){
+		ArrayList<Coordinate> moves =  new ArrayList<Coordinate>(); 
 
+		int x = getX()+xd;
+		int y = getY()+yd;
+		
+		while (true){
+			if (x < 0 || x == 8 || y < 0 || y == 8) break;
+			
+			Piece target = Main.getGameLogic().getPiece(x, y);
+			if (target == null) {
+				moves.add(new Coordinate(x,y));
+			}else if (target.getSide() != getSide()){
+				moves.add(new Coordinate(x,y));
+				break;
+			}else {
+				break;
+			}
+			x += xd;
+			y += yd;
+		}
+		
+		return moves;		
+	}
+	
 	public ArrayList<Coordinate> getMoves() {
 		return new ArrayList<Coordinate>(); 
 	}

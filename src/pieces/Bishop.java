@@ -2,9 +2,11 @@ package pieces;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Main.Coordinate;
 import Main.Main;
 import enums.Name;
 import enums.Side;
@@ -54,35 +56,38 @@ public class Bishop extends Piece{
 		return Name.BISHOP;
 	}
 	
-	@Override
-	public void move(int x, int y) {
-		
-		Piece target = Main.getGameLogic().getPiece(x, y);
-		if ((target == null || target.getSide() != this.getSide()) && Math.abs(x-getX()) == Math.abs(y-getY())) { // Bishop
-						
-			int i = 0;
-			int z = 0;
-			while (getX()!=x+i) {
-				
-				if (x<getX()) i++; 
-				else i--;
-				
-				if (y<getY()) z++;
-				else z--;
-				
-				if (getX()-i == x && getY()-z == y)continue;
-				
-				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return;
-				
-			}
-			
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
-
-		}
-		
-	}
+//	public ArrayList<Coordinate> getMoves() {
+//		return null;
+//	}
+//	@Override
+//	public void move(int x, int y) {
+//		
+//		Piece target = Main.getGameLogic().getPiece(x, y);
+//		if ((target == null || target.getSide() != this.getSide()) && Math.abs(x-getX()) == Math.abs(y-getY())) { // Bishop
+//						
+//			int i = 0;
+//			int z = 0;
+//			while (getX()!=x+i) {
+//				
+//				if (x<getX()) i++; 
+//				else i--;
+//				
+//				if (y<getY()) z++;
+//				else z--;
+//				
+//				if (getX()-i == x && getY()-z == y)continue;
+//				
+//				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return;
+//				
+//			}
+//			
+//			Main.getGameLogic().killPiece(target);
+//			Main.getGameLogic().setPiece(x, y, this);
+//			Main.getGameLogic().endTurn();
+//
+//		}
+//		
+//	}
 
 	
 }

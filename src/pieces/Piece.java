@@ -42,7 +42,7 @@ public class Piece {
 	
 
 	public ArrayList<Coordinate> getMoves() {
-		return null;
+		return new ArrayList<Coordinate>(); 
 	}
 
 	public void setX(int x) {

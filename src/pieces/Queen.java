@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import Main.Coordinate;
-import Main.Main;
 import enums.Name;
 import enums.Side;
 

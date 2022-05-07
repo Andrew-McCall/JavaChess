@@ -14,6 +14,11 @@ public class Coordinate {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Coordinate (" + x + ", " + y + ")";
+	}
+
 	public Coordinate(int x, int y) {
 		this.x = x;
 			this.y = y;

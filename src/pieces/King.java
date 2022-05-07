@@ -2,9 +2,11 @@ package pieces;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Main.Coordinate;
 import Main.Main;
 import enums.Name;
 import enums.Side;
@@ -55,35 +57,27 @@ public class King extends Piece{
 	}
 
 	@Override
-	public void move(int x, int y) {
+	public ArrayList<Coordinate> getMoves() {
+		ArrayList<Coordinate> moves = new	ArrayList<Coordinate>();
 		
-		Piece target = Main.getGameLogic().getPiece(x,y);
-		
-		if ((target == null || target.getSide() != getSide()) && (Math.abs(getX() - x )<=1 || Math.abs(getY() - y )<=1)) {
-
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
+		for (int dx = -1; dx < 2; dx+=1) {
+			for (int dy = -1; dy <2; dy+=1) {
+				
+				if (!(getX()+dx > 7 || getX()+dx < 0 || getY()+dy < 0 || getY()+dy > 7)) {
+					
+					Piece target = Main.getGameLogic().getPiece(getX()+dx, getY()+dy);
+					if (target == null || target.getSide() != getSide()) {
+						moves.add(new Coordinate(getX()+dx, getY()+dy));
+					}
+					
+				};
+				
+			}
 
 		}
 		
+		return moves;
+		
 	}
-//
-//	public boolean inCheck() {
-//		for (int i = 0; i < 8; i++) {
-//			for (int z = 0; z < 8; z++) {
-//				if (i == getX() && z == getY()) continue;
-//				
-//				Piece piece = Main.getGameLogic().getPiece(i, z);
-//				if (piece == null || piece.getSide()==this.getSide()) continue;
-//				
-//				if (piece.moveLegal(getX(), getY())) {
-//					return true;
-//				}
-//				
-//			}
-//		}
-//		return false;
-//	}
-//	
+
 }

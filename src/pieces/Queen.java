@@ -2,9 +2,11 @@ package pieces;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Main.Coordinate;
 import Main.Main;
 import enums.Name;
 import enums.Side;
@@ -55,74 +57,16 @@ public class Queen extends Piece{
 	}
 	
 	@Override
-	public void move(int x, int y) {
+	public ArrayList<Coordinate> getMoves() {
+		ArrayList<Coordinate> moves = new	ArrayList<Coordinate>();
 		
-		Piece target = Main.getGameLogic().getPiece(x, y);
-		if (target != null && target.getSide()==this.getSide()) return;
-		
-		if (Math.abs(x-getX()) == Math.abs(y-getY())) {
-						
-			int i = 0;
-			int z = 0;
-			while (getX()!=x+i) {
-				
-				if (x<getX()) i++; 
-				else i--;
-				
-				if (y<getY()) z++;
-				else z--;
-				
-				if (getX()-i == x && getY()-z == y)continue;
-				
-				if ( Main.getGameLogic().getPiece(getX()-i, getY()-z) != null) return;
-				
+		for (int x = -1; x < 2; x++) {
+			for (int y = -1; y < 2; y++) {
+				line(x, y).stream().forEach(legal -> moves.add(legal));
 			}
-			
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
-			
-		}if (y == getY()) {
-			
-			while (x != getX()) {
-				
-				if (x>getX()) {
-					x--;
-				}else {
-					x++;
-				}
-				
-				if (y == getY()) continue;
-
-				if (Main.getGameLogic().getPiece(x,y) != null) return;
-				
-			}
-			
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
-			
-		} else if (x == getX()) {
-			
-			while (y != getY()) {
-				
-				if (y>getY()) {
-					y--;
-				}else {
-					y++;
-				}
-				
-				if (y == getY()) continue;
-				
-				if (Main.getGameLogic().getPiece(x,y) != null) return;
-				
-			}
-			
-			Main.getGameLogic().killPiece(target);
-			Main.getGameLogic().setPiece(x, y, this);
-			Main.getGameLogic().endTurn();
-			
 		}
 		
+		return moves;
 	}
+		
 }

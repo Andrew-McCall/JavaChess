@@ -118,4 +118,9 @@ public class Piece {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Piece [Coords=(" + xCoord + ", " + yCoord + "), side=" + side + ", class="+getName()+"]";
+	}
+
 }

@@ -66,10 +66,8 @@ public class King extends Piece{
 				if (!(getX()+dx > 7 || getX()+dx < 0 || getY()+dy < 0 || getY()+dy > 7)) {
 					
 					Piece target = Main.getGameLogic().getPiece(getX()+dx, getY()+dy);
-					if (target == null || target.getSide() != getSide()) {
-						moves.add(new Coordinate(getX()+dx, getY()+dy));
-					}
-					
+					if (target == null || target.getSide() != getSide()) moves.add(new Coordinate(getX()+dx, getY()+dy));
+
 				};
 				
 			}

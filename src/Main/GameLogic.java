@@ -88,6 +88,47 @@ public class GameLogic implements ActionListener {
 		return turn;
 	}
 	
+	private boolean kingInDanger(Side side) {
+		Piece king = getPiece(Name.KING, side);
+		
+		var process = new Object() {boolean danger = false;};
+
+		Side eSide = (side == Side.WHITE)? Side.BLACK : Side.WHITE;
+
+		getPieces(eSide).stream().forEach(enemy -> {
+			if (enemy.getMoves().contains(king.getCoords())) {
+				System.out.println(enemy);
+				process.danger = true;
+			} 
+		});
+		
+		return process.danger;
+	}
+	
+	public void movePiece(Piece piece, Coordinate newPos) {
+				
+		Piece[] boardSave = boardData.clone();
+		
+		if (piece.move(newPos)) {
+			
+			if (kingInDanger(piece.getSide())) {
+
+				for (int x = 0; x < 8; x++) {
+					for (int y = 0; y < 8; y++) {
+						setPiece(x,y, boardSave[x+ y*8]);
+					}
+				}
+
+			}else {
+				Main.getGameLogic().endTurn();
+				boardSave = null;
+			}
+			
+		}
+		
+		
+	}
+
 	public void endTurn() {
 		if (turn == Side.BLACK) {
 			turn = Side.WHITE;
@@ -106,6 +147,18 @@ public class GameLogic implements ActionListener {
 	public Piece getPiece(Coordinate coords) {
 
 		return boardData[coords.getX() + (coords.getY()*8)];
+		
+	}
+	
+	public ArrayList<Piece> getPieces(Side side){
+		
+		ArrayList<Piece> pieces = new ArrayList<Piece>();
+		
+		for (int i = 0; i < boardData.length; i++) {
+			if (boardData[i] != null && boardData[i].getSide() == side) pieces.add(boardData[i]); 
+		}
+		
+		return pieces;
 		
 	}
 	

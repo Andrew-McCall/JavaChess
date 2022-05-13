@@ -89,20 +89,10 @@ public class GameLogic implements ActionListener {
 	}
 	
 	private boolean kingInDanger(Side side) {
-		Piece king = getPiece(Name.KING, side);
-		
-		var process = new Object() {boolean danger = false;};
+		King king = (King) getPiece(Name.KING, side);
 
-		Side eSide = (side == Side.WHITE)? Side.BLACK : Side.WHITE;
-
-		getPieces(eSide).stream().forEach(enemy -> {
-			if (enemy.getMoves().contains(king.getCoords())) {
-				System.out.println(enemy);
-				process.danger = true;
-			} 
-		});
+		return !king.safe();
 		
-		return process.danger;
 	}
 	
 	public void movePiece(Piece piece, Coordinate newPos) {

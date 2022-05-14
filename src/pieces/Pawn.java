@@ -108,7 +108,7 @@ public class Pawn extends Piece{
 					Main.getGameLogic().setPiece(target.getCoords(), null); 
 					Main.getGameLogic().setPiece(coords, this); 
 				}				
-				
+				setLastMove(Main.getGameLogic().getBoardVersion());
 				process.legal = true;
 			}
 		});

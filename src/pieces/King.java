@@ -141,7 +141,22 @@ public class King extends Piece{
 		return Name.KING;
 	}
 
-	
+	public boolean legalMove(int x, int y) {
+		
+		int currentX = getX();
+		int currentY = getY();
+		Piece oldPiece = Main.getGameLogic().getPiece(x,y);
+		
+		Main.getGameLogic().setPiece(getX(), getY(), null);
+		Main.getGameLogic().setPiece(x, y, this);
+		
+		boolean legal = safe();
+		
+		Main.getGameLogic().setPiece(getX(), getY(), oldPiece);
+		Main.getGameLogic().setPiece(currentX, currentY, this);
+		
+		return legal;
+	}
 	
 	@Override
 	public ArrayList<Coordinate> getMoves() {
@@ -153,7 +168,7 @@ public class King extends Piece{
 				if (!(getX()+dx > 7 || getX()+dx < 0 || getY()+dy < 0 || getY()+dy > 7)) {
 					
 					Piece target = Main.getGameLogic().getPiece(getX()+dx, getY()+dy);
-					if (target == null || target.getSide() != getSide()) moves.add(new Coordinate(getX()+dx, getY()+dy));
+					if ((target == null || target.getSide() != getSide())) moves.add(new Coordinate(getX()+dx, getY()+dy));
 
 				};
 				
@@ -161,8 +176,47 @@ public class King extends Piece{
 
 		}
 		
-		
-		
+		System.out.println(getLastMove());
+		if (getLastMove() == 0) {// Castling
+
+			boolean queenSide = true;
+			boolean kingSide = true;
+			int dx = 1;
+			while (getX() + dx < 7) {
+				if (Main.getGameLogic().getPiece(getX()+dx, getY()) == null && legalMove(getX()+dx, getY())) {
+					queenSide = false;
+					break;
+				}
+				dx++;
+			}
+			
+			if (queenSide) {
+				Piece rook = Main.getGameLogic().getPiece(7, getY());
+				if (rook != null && rook.getName() == Name.ROOK && rook.getLastMove() == 0 ) {
+					 moves.add(new Coordinate(7, getY()));
+					 System.out.println("QueenSide");
+				}
+			}
+			
+			dx = -1;
+			while (getX() + dx > 0) {
+				if (Main.getGameLogic().getPiece(getX()+dx, getY()) == null && legalMove(getX()+dx, getY())) {
+					kingSide = false;
+					break;
+				}
+				dx--;
+			}
+			
+			if (kingSide) {
+				Piece rook = Main.getGameLogic().getPiece(0, getY());
+				if (rook != null && rook.getName() == Name.ROOK && rook.getLastMove() == 0 ) {
+					 moves.add(new Coordinate(0, getY()));
+					 System.out.println("kingSide");
+				}
+			}
+			
+		}
+				
 		return moves;
 		
 	}

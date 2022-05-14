@@ -156,7 +156,6 @@ public class GameLogic implements ActionListener {
 
 		if (piece != null) {
 			boardData[piece.getX() + 8* piece.getY()] = null;
-			piece.setLastMove(boardVersion);
 			piece.setX(x);
 			piece.setY(y);
 		}
@@ -169,7 +168,6 @@ public class GameLogic implements ActionListener {
 
 		if (piece != null) {
 			boardData[piece.getX() + 8* piece.getY()] = null;
-			piece.setLastMove(boardVersion);
 			piece.setX(coords.getX());
 			piece.setY(coords.getY());
 		}

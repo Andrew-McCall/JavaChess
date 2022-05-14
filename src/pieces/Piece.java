@@ -111,6 +111,7 @@ public class Piece {
 				Piece target = Main.getGameLogic().getPiece(coords.getX(), coords.getY());
 				Main.getGameLogic().killPiece(target);
 				Main.getGameLogic().setPiece(coords, this);
+				setLastMove(Main.getGameLogic().getBoardVersion());
 				process.legal = true;
 			}
 		});

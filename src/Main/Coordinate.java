@@ -13,7 +13,7 @@ public class Coordinate {
 		return (obj1.getX() == this.x && obj1.getY() == this.y);
 		
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Coordinate (" + x + ", " + y + ")";

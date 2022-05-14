@@ -183,7 +183,7 @@ public class King extends Piece{
 			boolean kingSide = true;
 			int dx = 1;
 			while (getX() + dx < 7) {
-				if (Main.getGameLogic().getPiece(getX()+dx, getY()) == null && legalMove(getX()+dx, getY())) {
+				if (Main.getGameLogic().getPiece(getX()+dx, getY()) != null || !legalMove(getX()+dx, getY())) {
 					queenSide = false;
 					break;
 				}
@@ -194,13 +194,15 @@ public class King extends Piece{
 				Piece rook = Main.getGameLogic().getPiece(7, getY());
 				if (rook != null && rook.getName() == Name.ROOK && rook.getLastMove() == 0 ) {
 					 moves.add(new Coordinate(7, getY()));
+					 moves.add(new Coordinate(6, getY()));
+					 moves.add(new Coordinate(5, getY()));
 					 System.out.println("QueenSide");
 				}
 			}
 			
 			dx = -1;
 			while (getX() + dx > 0) {
-				if (Main.getGameLogic().getPiece(getX()+dx, getY()) == null && legalMove(getX()+dx, getY())) {
+				if (Main.getGameLogic().getPiece(getX()+dx, getY()) != null || !legalMove(getX()+dx, getY())) {
 					kingSide = false;
 					break;
 				}
@@ -211,6 +213,7 @@ public class King extends Piece{
 				Piece rook = Main.getGameLogic().getPiece(0, getY());
 				if (rook != null && rook.getName() == Name.ROOK && rook.getLastMove() == 0 ) {
 					 moves.add(new Coordinate(0, getY()));
+					 moves.add(new Coordinate(1, getY()));
 					 System.out.println("kingSide");
 				}
 			}
@@ -220,5 +223,35 @@ public class King extends Piece{
 		return moves;
 		
 	}
-
+	
+	@Override
+	public boolean move(Coordinate coords) {
+		var process = new Object() {boolean legal = false;};
+		
+		getMoves().stream().forEach(legalCoords -> {
+			if ( !process.legal && coords.equals(legalCoords)) {
+				int distance = getX() - coords.getX();
+				System.out.println(distance);
+				if (distance > 1) { // Castling KingSide
+					Piece rook = Main.getGameLogic().getPiece(0, coords.getY());
+					rook.move(new Coordinate(2, coords.getY()));
+					Main.getGameLogic().setPiece(1, getY(), this);
+				} else if (distance < -1){ // Castling Quee nSide
+					Piece rook = Main.getGameLogic().getPiece(7, coords.getY());
+					rook.move(new Coordinate(4, coords.getY()));
+					Main.getGameLogic().setPiece(5, getY(), this);
+				} else {
+					Piece target = Main.getGameLogic().getPiece(coords.getX(), coords.getY());
+					Main.getGameLogic().killPiece(target);
+					Main.getGameLogic().setPiece(coords, this);
+				}
+				
+				setLastMove(Main.getGameLogic().getBoardVersion());
+				process.legal = true;
+			}
+		});
+		return process.legal;
+		
+	}
+	
 }

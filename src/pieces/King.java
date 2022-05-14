@@ -176,7 +176,6 @@ public class King extends Piece{
 
 		}
 		
-		System.out.println(getLastMove());
 		if (getLastMove() == 0) {// Castling
 
 			boolean queenSide = true;
@@ -196,7 +195,6 @@ public class King extends Piece{
 					 moves.add(new Coordinate(7, getY()));
 					 moves.add(new Coordinate(6, getY()));
 					 moves.add(new Coordinate(5, getY()));
-					 System.out.println("QueenSide");
 				}
 			}
 			
@@ -214,7 +212,6 @@ public class King extends Piece{
 				if (rook != null && rook.getName() == Name.ROOK && rook.getLastMove() == 0 ) {
 					 moves.add(new Coordinate(0, getY()));
 					 moves.add(new Coordinate(1, getY()));
-					 System.out.println("kingSide");
 				}
 			}
 			
@@ -231,7 +228,6 @@ public class King extends Piece{
 		getMoves().stream().forEach(legalCoords -> {
 			if ( !process.legal && coords.equals(legalCoords)) {
 				int distance = getX() - coords.getX();
-				System.out.println(distance);
 				if (distance > 1) { // Castling KingSide
 					Piece rook = Main.getGameLogic().getPiece(0, coords.getY());
 					rook.move(new Coordinate(2, coords.getY()));

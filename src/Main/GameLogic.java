@@ -13,8 +13,9 @@ import pieces.*;
 public class GameLogic implements ActionListener {
 
 	private Piece[] boardData;
-	private ArrayList<Name> deadData;
-	private int boardVersion = 0;
+	private ArrayList<Piece> deadBlack;
+	private ArrayList<Piece> deadWhite;
+ 	private int boardVersion = 0;
 	private Side turn = Side.WHITE;
 	private int[] counter = new int[2];
 	
@@ -38,7 +39,8 @@ public class GameLogic implements ActionListener {
 	public GameLogic() {
 
 		boardData = new Piece[64];
-		deadData = new ArrayList<Name>();
+		deadWhite = new ArrayList<Piece>();
+		deadBlack = new ArrayList<Piece>();
 		Timer timer = new Timer(100, this);
 		
 		/// Standard Board
@@ -178,7 +180,12 @@ public class GameLogic implements ActionListener {
 	
 	public void killPiece(Piece piece) {
 		if (piece != null) {
-			deadData.add(piece.getName());
+			if (piece.getSide() == Side.WHITE) {
+				deadWhite.add(piece);
+			}else {
+				deadBlack.add(piece);
+			}
+			
 //			setPiece(piece.getX(), piece.getY(), null);
 		}
 	}
@@ -194,6 +201,14 @@ public class GameLogic implements ActionListener {
 //		return false;
 //	}
 	
+	public ArrayList<Piece> getDeadBlack() {
+		return deadBlack;
+	}
+
+	public ArrayList<Piece> getDeadWhite() {
+		return deadWhite;
+	}
+
 	public Piece getPiece(Name name, Side side) {
 		
 		Piece piece = null;

@@ -107,10 +107,16 @@ public class Board extends JPanel implements MouseListener {
 
         g2d.drawString("White", FONTSIZE/2, Main.BOXSIZE*8+FONTSIZE);
         g2d.drawString(String.valueOf(Main.getGameLogic().getCounter()[0]/10f), FONTSIZE/2, Main.BOXSIZE*8+FONTSIZE*2);
-
+        var dead = new Object() {int blackIndex = 0; int whiteIndex = 0;};
+        Main.getGameLogic().getDeadBlack().stream().forEach(p -> {
+            g2d.drawImage(p.getImage(), (int) (Main.BOXSIZE*1.2+FONTSIZE*dead.blackIndex++*0.8), (int) (Main.BOXSIZE*8.5), (int) FONTSIZE, (int) FONTSIZE, this);
+        });
+        
         g2d.drawString("Black", Main.BOXSIZE*8-FONTSIZE*6/2, Main.BOXSIZE*8+FONTSIZE);
         g2d.drawString(String.valueOf(Main.getGameLogic().getCounter()[1]/10f), Main.BOXSIZE*8-FONTSIZE*6/2, Main.BOXSIZE*8+FONTSIZE*2);
-
+        Main.getGameLogic().getDeadWhite().stream().forEach(p -> {
+            g2d.drawImage(p.getImage(), (int) (Main.BOXSIZE*5.8-FONTSIZE*dead.whiteIndex++*0.8), (int) (Main.BOXSIZE*8.5), (int) FONTSIZE, (int) FONTSIZE, this);
+        });
 	}
 
 	@Override

@@ -30,6 +30,15 @@ public class Main {
 		
 	}
 	
+	public static JFrame getWindow() {
+		return window;
+	}
+	
+	public static void setWindow(JFrame window) {
+		Main.window = window;
+	}
+	
+	
 	public static GameLogic getGameLogic() {
 		return gameLogic;
 	}

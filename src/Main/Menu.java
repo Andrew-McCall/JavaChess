@@ -12,17 +12,17 @@ public class Menu extends JPanel implements ActionListener  {
 
 	public Menu() {
 		
-		JButton test1 = new JButton("test 1");
-		JButton test2 = new JButton("test 2");
-		JButton test3 = new JButton("test 3");
+		JButton play = new JButton("Play");
+		JButton button2 = new JButton("test 2");
+		JButton quit = new JButton("Quit");
 				
-		test1.addActionListener(this);
-		test2.addActionListener(this);
-		test3.addActionListener(this);
+		play.addActionListener(this);
+		button2.addActionListener(this);
+		quit.addActionListener(this);
 				
-		this.add(test1);
-		this.add(test2);
-		this.add(test3);
+		this.add(play);
+		this.add(button2);
+		this.add(quit);
 				
 		
 		this.setLayout(new GridLayout(3,1,5,10));
@@ -35,8 +35,12 @@ public class Menu extends JPanel implements ActionListener  {
 
 		switch (e.getActionCommand()) {
 		
-			case "test 1":
+			case "Play":
 				Main.setPanel(new Board());
+				break;
+				
+			case "Quit":
+				Main.getWindow().dispose();
 				break;
 				
 			default:

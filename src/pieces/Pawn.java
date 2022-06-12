@@ -73,12 +73,12 @@ public class Pawn extends Piece{
 		}
 		
 		Piece enPassantLeft = Main.getGameLogic().getPiece(getX()-1, getY());
-		if ( enPassantLeft != null && enPassantLeft.getSide() != getSide() && enPassantLeft.getLastMove() == Main.getGameLogic().getBoardVersion()-1 && ((getY() == 3 && Side.WHITE == getSide()) || (getY() == 4 && Side.BLACK == getSide()))) {
+		if ( enPassantLeft != null && enPassantLeft.getName() == Name.PAWN && enPassantLeft.getSide() != getSide() && enPassantLeft.getLastMove() == Main.getGameLogic().getBoardVersion()-1 && ((getY() == 3 && Side.WHITE == getSide()) || (getY() == 4 && Side.BLACK == getSide()))) {
 			moves.add(new Coordinate(getX()-1, getY()+forward));
 		}
 		
 		Piece enPassantRight = Main.getGameLogic().getPiece(getX()+1, getY());
-		if ( enPassantRight != null && enPassantRight.getSide() != getSide() && enPassantRight.getLastMove() == Main.getGameLogic().getBoardVersion()-1 && ((getY() == 3 && Side.WHITE == getSide()) || (getY() == 4 && Side.BLACK == getSide()))) {
+		if ( enPassantRight != null && enPassantRight.getName() == Name.PAWN && enPassantRight.getSide() != getSide() && enPassantRight.getLastMove() == Main.getGameLogic().getBoardVersion()-1 && ((getY() == 3 && Side.WHITE == getSide()) || (getY() == 4 && Side.BLACK == getSide()))) {
 			moves.add(new Coordinate(getX()+1, getY()+forward));
 		}
 		

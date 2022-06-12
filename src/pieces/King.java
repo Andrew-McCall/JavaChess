@@ -29,8 +29,9 @@ public class King extends Piece{
 	public boolean safe() {
 		
 		// Straights
+
 		Piece piece = attacker(1 , 0);
-		if (piece != null && (piece.getName() != Name.ROOK || piece.getName() == Name.QUEEN)) return false;
+		if (piece != null && (piece.getName() == Name.ROOK || piece.getName() == Name.QUEEN)) return false;
 		piece = attacker(-1, 0);
 		if (piece != null && (piece.getName() == Name.ROOK || piece.getName() == Name.QUEEN)) return false;
 		piece = attacker(0 , 1);
@@ -68,17 +69,18 @@ public class King extends Piece{
 				};
 				
 			}
-		
+
 		// Pawn
 		int dy = 1;
 		if (getSide() == Side.WHITE) {
 			dy = -1;
 		}
+
 		Piece target = Main.getGameLogic().getPiece(getX()+1, getY()+dy);
 		if (target != null && target.getSide() != getSide() && target.getName() == Name.PAWN) {
 			return false;
 		}
-		
+
 		target = Main.getGameLogic().getPiece(getX()-1, getY()+dy);
 		if (target != null && target.getSide() != getSide() && target.getName() == Name.PAWN) {
 			return false;

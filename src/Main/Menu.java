@@ -21,11 +21,11 @@ public class Menu extends JPanel implements ActionListener  {
 		quit.addActionListener(this);
 				
 		this.add(play);
-		this.add(button2);
+		//this.add(button2);
 		this.add(quit);
 				
 		
-		this.setLayout(new GridLayout(3,1,5,10));
+		this.setLayout(new GridLayout(2,1,10,10));
 //		setPreferredSize(new Dimension(Main.getBoxsize() * 10, Main.getBoxsize() * 8));
 		
 	}

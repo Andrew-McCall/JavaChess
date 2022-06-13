@@ -103,7 +103,7 @@ public class GameLogic implements ActionListener {
 		
 		if (piece.move(newPos)) {
 			
-			if (kingInDanger(piece.getSide())) {
+			if (kingInDanger(turn)) {
 
 				for (int x = 0; x < 8; x++) {
 					for (int y = 0; y < 8; y++) {
@@ -114,8 +114,7 @@ public class GameLogic implements ActionListener {
 			}else {
 				Main.getGameLogic().endTurn();
 				boardSave = null;
-			}
-			
+				}
 		}
 		
 		

@@ -8,7 +8,7 @@ import Main.Main;
 import enums.Name;
 import enums.Side;
 
-public class Piece {
+public abstract class Piece {
 
 	private int xCoord;
 	private int yCoord;
